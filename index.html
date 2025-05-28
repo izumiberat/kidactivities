@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>PlayIdeas - Activity Generator for Parents</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+        }
+        .form-group {
+            margin-bottom: 15px;
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        select, .materials {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .materials {
+            columns: 2;
+        }
+        button {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%;
+        }
+        #result {
+            margin-top: 20px;
+            padding: 15px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>PlayIdeas Generator</h1>
+    
+    <div class="form-group">
+        <label for="age">Child's Age:</label>
+        <select id="age">
+            <option value="0-2">0-2 years</option>
+            <option value="3-5">3-5 years</option>
+            <option value="6-8">6-8 years</option>
+            <option value="9-12">9-12 years</option>
+        </select>
+    </div>
+    
+    <div class="form-group">
+        <label>Location:</label>
+        <div>
+            <input type="radio" id="indoor" name="location" value="indoor" checked>
+            <label for="indoor" style="display: inline;">Indoor</label>
+        </div>
+        <div>
+            <input type="radio" id="outdoor" name="location" value="outdoor">
+            <label for="outdoor" style="display: inline;">Outdoor</label>
+        </div>
+    </div>
+    
+    <div class="form-group">
+        <label>Available Materials:</label>
+        <div class="materials">
+            <div><input type="checkbox" id="paper" value="paper"> <label for="paper" style="display: inline;">Paper</label></div>
+            <div><input type="checkbox" id="pencils" value="pencils"> <label for="pencils" style="display: inline;">Pencils/Markers</label></div>
+            <div><input type="checkbox" id="scissors" value="scissors"> <label for="scissors" style="display: inline;">Scissors</label></div>
+            <div><input type="checkbox" id="tape" value="tape"> <label for="tape" style="display: inline;">Tape/Glue</label></div>
+            <div><input type="checkbox" id="ball" value="ball"> <label for="ball" style="display: inline;">Ball</label></div>
+            <div><input type="checkbox" id="blocks" value="blocks"> <label for="blocks" style="display: inline;">Blocks/Lego</label></div>
+            <div><input type="checkbox" id="dolls" value="dolls"> <label for="dolls" style="display: inline;">Dolls/Stuffed Animals</label></div>
+            <div><input type="checkbox" id="none" value="none"> <label for="none" style="display: inline;">Nothing special</label></div>
+        </div>
+    </div>
+    
+    <button onclick="generateActivity()">Generate Play Idea!</button>
+    
+    <div id="result"></div>
+    
+    <script>
+        // Activity database
+        const activities = [
+            { age: "0-2", location: "indoor", materials: ["none"], 
+              text: "Peek-a-boo with a blanket: Simple but always delightful for little ones!" },
+              
+            { age: "3-5", location: "indoor", materials: ["paper", "pencils"], 
+              text: "Drawing game: Take turns drawing parts of a funny creature (head, body, legs)." },
+              
+            { age: "6-8", location: "outdoor", materials: ["ball"], 
+              text: "Alphabet ball: Throw the ball while saying letters in order. Make it harder by doing multiples or spelling words!" },
+              
+            { age: "9-12", location: "indoor", materials: ["tape"], 
+              text: "Tape maze: Create a maze on the floor with tape and have your child navigate it with a cotton ball using a straw." }
+            // We can add many more activities here
+        ];
+        
+        function generateActivity() {
+            // Get user selections
+            const age = document.getElementById("age").value;
+            const location = document.querySelector('input[name="location"]:checked').value;
+            
+            // Get selected materials
+            const materialCheckboxes = document.querySelectorAll('.materials input[type="checkbox"]:checked');
+            const materials = Array.from(materialCheckboxes).map(cb => cb.value);
+            
+            // Find matching activities
+            const matchingActivities = activities.filter(activity => 
+                activity.age === age && 
+                activity.location === location &&
+                activity.materials.some(m => materials.includes(m))
+            );
+            
+            // Display result
+            const resultDiv = document.getElementById("result");
+            if (matchingActivities.length > 0) {
+                const randomActivity = matchingActivities[Math.floor(Math.random() * matchingActivities.length)];
+                resultDiv.innerHTML = `<h3>Here's your play idea:</h3><p>${randomActivity.text}</p>`;
+            } else {
+                resultDiv.innerHTML = "<p>No exact matches found. Try selecting fewer materials or different options.</p>";
+            }
+            resultDiv.style.display = "block";
+        }
+    </script>
+</body>
+</html>
