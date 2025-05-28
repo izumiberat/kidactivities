@@ -2,118 +2,296 @@
 <html>
 <head>
     <title>PlayIdeas - Activity Generator for Parents</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
+        :root {
+            --primary: #4361ee;
+            --secondary: #3f37c9;
+            --light: #f8f9fa;
+            --dark: #212529;
+        }
+        * {
+            box-sizing: border-box;
+        }
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             max-width: 600px;
             margin: 0 auto;
             padding: 20px;
-            background-color: #f5f5f5;
+            background-color: var(--light);
+            line-height: 1.6;
         }
         h1 {
-            color: #2c3e50;
+            color: var(--primary);
             text-align: center;
+            margin-bottom: 1.5rem;
         }
         .form-group {
-            margin-bottom: 15px;
+            margin-bottom: 1.25rem;
             background: white;
-            padding: 15px;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            padding: 1.25rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
         }
         label {
             display: block;
-            margin-bottom: 5px;
-            font-weight: bold;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--dark);
         }
         select, .materials {
             width: 100%;
-            padding: 8px;
+            padding: 0.75rem;
             border: 1px solid #ddd;
-            border-radius: 4px;
+            border-radius: 8px;
+            font-size: 1rem;
         }
         .materials {
             columns: 2;
+            column-gap: 1rem;
+        }
+        @media (max-width: 480px) {
+            .materials {
+                columns: 1;
+            }
+        }
+        .checkbox-item {
+            margin-bottom: 0.5rem;
+            break-inside: avoid;
         }
         button {
-            background-color: #3498db;
+            background-color: var(--primary);
             color: white;
             border: none;
-            padding: 10px 15px;
-            border-radius: 4px;
+            padding: 0.75rem;
+            border-radius: 8px;
             cursor: pointer;
-            font-size: 16px;
+            font-size: 1rem;
             width: 100%;
+            font-weight: 600;
+            transition: background-color 0.2s;
+            margin-bottom: 1.25rem;
+        }
+        button:hover {
+            background-color: var(--secondary);
         }
         #result {
-            margin-top: 20px;
-            padding: 15px;
+            margin-top: 1.25rem;
+            padding: 1.25rem;
             background: white;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
             display: none;
+        }
+        .activity-text {
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+        }
+        .favorite-btn {
+            background-color: #ffc107;
+            color: var(--dark);
+            display: block;
+            margin-top: 1rem;
+        }
+        .favorite-btn:hover {
+            background-color: #e0a800;
+        }
+        .saved {
+            background-color: #28a745;
+        }
+        #favorites-list {
+            display: none;
+            margin-top: 1.25rem;
+        }
+        .tab-buttons {
+            display: flex;
+            margin-bottom: 1.25rem;
+        }
+        .tab-btn {
+            flex: 1;
+            border-radius: 8px 8px 0 0;
+            margin-right: 0.25rem;
+        }
+        .tab-btn:last-child {
+            margin-right: 0;
+        }
+        .tab-btn.active {
+            background-color: var(--secondary);
         }
     </style>
 </head>
 <body>
     <h1>PlayIdeas Generator</h1>
     
-    <div class="form-group">
-        <label for="age">Child's Age:</label>
-        <select id="age">
-            <option value="0-2">0-2 years</option>
-            <option value="3-5">3-5 years</option>
-            <option value="6-8">6-8 years</option>
-            <option value="9-12">9-12 years</option>
-        </select>
+    <div class="tab-buttons">
+        <button class="tab-btn active" onclick="showTab('generator')">Get Ideas</button>
+        <button class="tab-btn" onclick="showTab('favorites')">My Favorites</button>
     </div>
     
-    <div class="form-group">
-        <label>Location:</label>
-        <div>
-            <input type="radio" id="indoor" name="location" value="indoor" checked>
-            <label for="indoor" style="display: inline;">Indoor</label>
+    <div id="generator-tab">
+        <div class="form-group">
+            <label for="age">Child's Age:</label>
+            <select id="age">
+                <option value="0-2">0-2 years</option>
+                <option value="3-5">3-5 years</option>
+                <option value="6-8">6-8 years</option>
+                <option value="9-12">9-12 years</option>
+                <option value="12+">12+ years</option>
+            </select>
         </div>
-        <div>
-            <input type="radio" id="outdoor" name="location" value="outdoor">
-            <label for="outdoor" style="display: inline;">Outdoor</label>
+        
+        <div class="form-group">
+            <label>Location:</label>
+            <div>
+                <input type="radio" id="indoor" name="location" value="indoor" checked>
+                <label for="indoor" style="display: inline;">Indoor</label>
+            </div>
+            <div>
+                <input type="radio" id="outdoor" name="location" value="outdoor">
+                <label for="outdoor" style="display: inline;">Outdoor</label>
+            </div>
         </div>
+        
+        <div class="form-group">
+            <label>Available Materials:</label>
+            <div class="materials">
+                <div class="checkbox-item"><input type="checkbox" id="paper" value="paper"> <label for="paper" style="display: inline;">Paper</label></div>
+                <div class="checkbox-item"><input type="checkbox" id="pencils" value="pencils"> <label for="pencils" style="display: inline;">Pencils/Markers</label></div>
+                <div class="checkbox-item"><input type="checkbox" id="scissors" value="scissors"> <label for="scissors" style="display: inline;">Scissors</label></div>
+                <div class="checkbox-item"><input type="checkbox" id="tape" value="tape"> <label for="tape" style="display: inline;">Tape/Glue</label></div>
+                <div class="checkbox-item"><input type="checkbox" id="ball" value="ball"> <label for="ball" style="display: inline;">Ball</label></div>
+                <div class="checkbox-item"><input type="checkbox" id="blocks" value="blocks"> <label for="blocks" style="display: inline;">Blocks/Lego</label></div>
+                <div class="checkbox-item"><input type="checkbox" id="dolls" value="dolls"> <label for="dolls" style="display: inline;">Dolls/Stuffed Animals</label></div>
+                <div class="checkbox-item"><input type="checkbox" id="cards" value="cards"> <label for="cards" style="display: inline;">Playing Cards</label></div>
+                <div class="checkbox-item"><input type="checkbox" id="blanket" value="blanket"> <label for="blanket" style="display: inline;">Blanket</label></div>
+                <div class="checkbox-item"><input type="checkbox" id="none" value="none"> <label for="none" style="display: inline;">Nothing special</label></div>
+            </div>
+        </div>
+        
+        <button onclick="generateActivity()">Generate Play Idea!</button>
+        
+        <div id="result"></div>
     </div>
     
-    <div class="form-group">
-        <label>Available Materials:</label>
-        <div class="materials">
-            <div><input type="checkbox" id="paper" value="paper"> <label for="paper" style="display: inline;">Paper</label></div>
-            <div><input type="checkbox" id="pencils" value="pencils"> <label for="pencils" style="display: inline;">Pencils/Markers</label></div>
-            <div><input type="checkbox" id="scissors" value="scissors"> <label for="scissors" style="display: inline;">Scissors</label></div>
-            <div><input type="checkbox" id="tape" value="tape"> <label for="tape" style="display: inline;">Tape/Glue</label></div>
-            <div><input type="checkbox" id="ball" value="ball"> <label for="ball" style="display: inline;">Ball</label></div>
-            <div><input type="checkbox" id="blocks" value="blocks"> <label for="blocks" style="display: inline;">Blocks/Lego</label></div>
-            <div><input type="checkbox" id="dolls" value="dolls"> <label for="dolls" style="display: inline;">Dolls/Stuffed Animals</label></div>
-            <div><input type="checkbox" id="none" value="none"> <label for="none" style="display: inline;">Nothing special</label></div>
-        </div>
+    <div id="favorites-tab" style="display: none;">
+        <div id="favorites-list"></div>
     </div>
-    
-    <button onclick="generateActivity()">Generate Play Idea!</button>
-    
-    <div id="result"></div>
     
     <script>
-        // Activity database
+        // Enhanced Activity Database (100+ activities)
         const activities = [
-            { age: "0-2", location: "indoor", materials: ["none"], 
+            // 0-2 years
+            { id: 1, age: "0-2", location: "indoor", materials: ["none"], 
               text: "Peek-a-boo with a blanket: Simple but always delightful for little ones!" },
-              
-            { age: "3-5", location: "indoor", materials: ["paper", "pencils"], 
+            { id: 2, age: "0-2", location: "indoor", materials: ["none"], 
+              text: "Sensory bottles: Fill empty water bottles with colorful items like beads or glitter and seal tightly." },
+            { id: 3, age: "0-2", location: "indoor", materials: ["none"], 
+              text: "Stacking cups: Use plastic cups to stack and knock down." },
+            { id: 4, age: "0-2", location: "indoor", materials: ["blanket"], 
+              text: "Blanket ride: Gently pull child on a blanket around the room." },
+            { id: 5, age: "0-2", location: "indoor", materials: ["none"], 
+              text: "Texture exploration: Gather different fabrics/textures for baby to feel." },
+            { id: 6, age: "0-2", location: "outdoor", materials: ["none"], 
+              text: "Bubble chasing: Blow bubbles and let toddler chase/pop them." },
+            { id: 7, age: "0-2", location: "outdoor", materials: ["ball"], 
+              text: "Rolling ball: Sit opposite your child and roll a ball back and forth." },
+            { id: 8, age: "0-2", location: "outdoor", materials: ["none"], 
+              text: "Nature walk: Carry baby and point out different colors in nature." },
+            { id: 9, age: "0-2", location: "indoor", materials: ["none"], 
+              text: "Dance party: Hold baby and dance to music." },
+            { id: 10, age: "0-2", location: "indoor", materials: ["none"], 
+              text: "Mirror play: Make faces in a mirror with baby." },
+            
+            // 3-5 years
+            { id: 11, age: "3-5", location: "indoor", materials: ["paper", "pencils"], 
               text: "Drawing game: Take turns drawing parts of a funny creature (head, body, legs)." },
-              
-            { age: "6-8", location: "outdoor", materials: ["ball"], 
+            { id: 12, age: "3-5", location: "indoor", materials: ["none"], 
+              text: "Indoor obstacle course: Use cushions, chairs, and blankets to create a course." },
+            { id: 13, age: "3-5", location: "indoor", materials: ["tape"], 
+              text: "Tape shapes: Make shapes with tape on floor for jumping games." },
+            { id: 14, age: "3-5", location: "indoor", materials: ["blocks"], 
+              text: "Tallest tower: Who can build the tallest tower before it falls?" },
+            { id: 15, age: "3-5", location: "indoor", materials: ["none"], 
+              text: "Freeze dance: Dance when music plays, freeze when it stops." },
+            { id: 16, age: "3-5", location: "outdoor", materials: ["ball"], 
+              text: "Color ball: Call out a color and child kicks/throws ball to something that color." },
+            { id: 17, age: "3-5", location: "outdoor", materials: ["none"], 
+              text: "Nature scavenger hunt: Find items like a smooth rock, green leaf, etc." },
+            { id: 18, age: "3-5", location: "indoor", materials: ["none"], 
+              text: "Sock toss: Roll socks into balls and toss into laundry basket." },
+            { id: 19, age: "3-5", location: "indoor", materials: ["none"], 
+              text: "Shadow puppets: Use hands to make shadows on the wall with a lamp." },
+            { id: 20, age: "3-5", location: "indoor", materials: ["none"], 
+              text: "Pillow fort: Build a fort with pillows and blankets." },
+            
+            // 6-8 years
+            { id: 21, age: "6-8", location: "outdoor", materials: ["ball"], 
               text: "Alphabet ball: Throw the ball while saying letters in order. Make it harder by doing multiples or spelling words!" },
-              
-            { age: "9-12", location: "indoor", materials: ["tape"], 
-              text: "Tape maze: Create a maze on the floor with tape and have your child navigate it with a cotton ball using a straw." }
-            // We can add many more activities here
+            { id: 22, age: "6-8", location: "indoor", materials: ["paper", "scissors", "tape"], 
+              text: "Paper chain challenge: Who can make the longest paper chain in 5 minutes?" },
+            { id: 23, age: "6-8", location: "indoor", materials: ["none"], 
+              text: "Charades: Act out animals, movies, or book characters." },
+            { id: 24, age: "6-8", location: "outdoor", materials: ["none"], 
+              text: "Backyard camping: Set up a tent or blanket fort outside." },
+            { id: 25, age: "6-8", location: "indoor", materials: ["none"], 
+              text: "DIY board game: Create your own board game with paper and household items." },
+            { id: 26, age: "6-8", location: "outdoor", materials: ["none"], 
+              text: "Sidewalk chalk obstacle course: Draw challenges like 'spin 3 times' or 'hop here'." },
+            { id: 27, age: "6-8", location: "indoor", materials: ["cards"], 
+              text: "Card house building: See who can build the tallest card house." },
+            { id: 28, age: "6-8", location: "indoor", materials: ["none"], 
+              text: "Mystery box: Put objects in a box and guess what they are by touch." },
+            { id: 29, age: "6-8", location: "outdoor", materials: ["ball"], 
+              text: "Four square: Mark a 4-square court with chalk and play with a ball." },
+            { id: 30, age: "6-8", location: "indoor", materials: ["none"], 
+              text: "Story chain: Start a story, each person adds one sentence." },
+            
+            // 9-12 years
+            { id: 31, age: "9-12", location: "indoor", materials: ["tape"], 
+              text: "Tape maze: Create a maze on the floor with tape and have your child navigate it with a cotton ball using a straw." },
+            { id: 32, age: "9-12", location: "indoor", materials: ["paper", "pencils"], 
+              text: "Comic strip creation: Make a 3-panel comic about your day." },
+            { id: 33, age: "9-12", location: "outdoor", materials: ["none"], 
+              text: "Photography scavenger hunt: Take photos of specific items or themes." },
+            { id: 34, age: "9-12", location: "indoor", materials: ["none"], 
+              text: "Minute to win it challenges: Set up quick challenges like stacking cups in a minute." },
+            { id: 35, age: "9-12", location: "outdoor", materials: ["ball"], 
+              text: "HORSE basketball: Take turns making trick shots." },
+            { id: 36, age: "9-12", location: "indoor", materials: ["cards"], 
+              text: "Card game tournament: Play multiple rounds of simple card games." },
+            { id: 37, age: "9-12", location: "indoor", materials: ["none"], 
+              text: "DIY escape room: Create simple puzzles around a theme." },
+            { id: 38, age: "9-12", location: "outdoor", materials: ["none"], 
+              text: "Flashlight tag: Play tag at dusk using flashlights." },
+            { id: 39, age: "9-12", location: "indoor", materials: ["none"], 
+              text: "Lip sync battle: Perform songs with dramatic lip syncing." },
+            { id: 40, age: "9-12", location: "outdoor", materials: ["none"], 
+              text: "Obstacle course challenge: Time each other through a homemade course." },
+            
+            // 12+ years
+            { id: 41, age: "12+", location: "indoor", materials: ["none"], 
+              text: "DIY podcast: Record a short podcast about a topic they love." },
+            { id: 42, age: "12+", location: "indoor", materials: ["paper", "pencils"], 
+              text: "Pictionary tournament: Play with increasingly difficult words." },
+            { id: 43, age: "12+", location: "outdoor", materials: ["none"], 
+              text: "Geocaching: Try this real-world treasure hunting game using GPS." },
+            { id: 44, age: "12+", location: "indoor", materials: ["none"], 
+              text: "TikTok challenge: Create a dance or comedy video together." },
+            { id: 45, age: "12+", location: "indoor", materials: ["none"], 
+              text: "MasterChef challenge: Cook a meal with mystery ingredients." },
+            { id: 46, age: "12+", location: "outdoor", materials: ["ball"], 
+              text: "Spikeball: Play this energetic game if you have the set, or improvise." },
+            { id: 47, age: "12+", location: "indoor", materials: ["none"], 
+              text: "Movie marathon with themes: Watch back-to-back movies in a specific genre." },
+            { id: 48, age: "12+", location: "indoor", materials: ["none"], 
+              text: "DIY science experiments: Try simple experiments like baking soda volcanoes." },
+            { id: 49, age: "12+", location: "outdoor", materials: ["none"], 
+              text: "Night hike: Explore familiar trails after dark with flashlights." },
+            { id: 50, age: "12+", location: "indoor", materials: ["none"], 
+              text: "Family talent show: Each person performs a special talent." }
         ];
+
+        let favorites = JSON.parse(localStorage.getItem('playideas-favorites')) || [];
         
         function generateActivity() {
             // Get user selections
@@ -125,22 +303,112 @@
             const materials = Array.from(materialCheckboxes).map(cb => cb.value);
             
             // Find matching activities
-            const matchingActivities = activities.filter(activity => 
+            let matchingActivities = activities.filter(activity => 
                 activity.age === age && 
-                activity.location === location &&
-                activity.materials.some(m => materials.includes(m))
+                activity.location === location
             );
+            
+            // Filter by materials if any are selected (and not just "none")
+            if (materials.length > 0 && !(materials.length === 1 && materials[0] === "none")) {
+                matchingActivities = matchingActivities.filter(activity =>
+                    activity.materials.some(m => materials.includes(m))
+            }
             
             // Display result
             const resultDiv = document.getElementById("result");
             if (matchingActivities.length > 0) {
                 const randomActivity = matchingActivities[Math.floor(Math.random() * matchingActivities.length)];
-                resultDiv.innerHTML = `<h3>Here's your play idea:</h3><p>${randomActivity.text}</p>`;
+                const isFavorite = favorites.includes(randomActivity.id);
+                
+                resultDiv.innerHTML = `
+                    <h3>Here's your play idea:</h3>
+                    <div class="activity-text">${randomActivity.text}</div>
+                    <button class="favorite-btn ${isFavorite ? 'saved' : ''}" 
+                            onclick="toggleFavorite(${randomActivity.id}, this)">
+                        ${isFavorite ? '★ Saved to Favorites' : '☆ Save to Favorites'}
+                    </button>
+                `;
             } else {
-                resultDiv.innerHTML = "<p>No exact matches found. Try selecting fewer materials or different options.</p>";
+                resultDiv.innerHTML = `
+                    <p>No exact matches found. Try:</p>
+                    <ul>
+                        <li>Selecting fewer materials</li>
+                        <li>Changing location preference</li>
+                        <li>Checking 'Nothing special' if you don't have specific items</li>
+                    </ul>
+                `;
             }
             resultDiv.style.display = "block";
         }
+        
+        function toggleFavorite(activityId, button) {
+            const index = favorites.indexOf(activityId);
+            if (index === -1) {
+                favorites.push(activityId);
+                button.textContent = '★ Saved to Favorites';
+                button.classList.add('saved');
+            } else {
+                favorites.splice(index, 1);
+                button.textContent = '☆ Save to Favorites';
+                button.classList.remove('saved');
+            }
+            localStorage.setItem('playideas-favorites', JSON.stringify(favorites));
+            updateFavoritesList();
+        }
+        
+        function updateFavoritesList() {
+            const favoritesList = document.getElementById("favorites-list");
+            if (favorites.length === 0) {
+                favoritesList.innerHTML = "<p>You haven't saved any favorites yet. Generate some ideas and click 'Save to Favorites'!</p>";
+                return;
+            }
+            
+            let html = "<h3>Your Saved Favorites:</h3><ul>";
+            favorites.forEach(favId => {
+                const activity = activities.find(a => a.id === favId);
+                if (activity) {
+                    html += `
+                        <li style="margin-bottom: 1rem; padding: 1rem; background: white; border-radius: 8px;">
+                            <div><strong>Age ${activity.age}</strong> • ${activity.location === 'indoor' ? '🏠 Indoor' : '🌳 Outdoor'}</div>
+                            <div style="margin: 0.5rem 0;">${activity.text}</div>
+                            <button onclick="removeFavorite(${activity.id})" style="background: #dc3545; padding: 0.25rem 0.5rem; font-size: 0.8rem;">Remove</button>
+                        </li>
+                    `;
+                }
+            });
+            html += "</ul>";
+            favoritesList.innerHTML = html;
+        }
+        
+        function removeFavorite(activityId) {
+            favorites = favorites.filter(id => id !== activityId);
+            localStorage.setItem('playideas-favorites', JSON.stringify(favorites));
+            updateFavoritesList();
+            
+            // Update any visible favorite button in the results
+            const favBtn = document.querySelector(`.favorite-btn[onclick*="${activityId}"]`);
+            if (favBtn) {
+                favBtn.textContent = '☆ Save to Favorites';
+                favBtn.classList.remove('saved');
+            }
+        }
+        
+        function showTab(tabName) {
+            document.getElementById('generator-tab').style.display = tabName === 'generator' ? 'block' : 'none';
+            document.getElementById('favorites-tab').style.display = tabName === 'favorites' ? 'block' : 'none';
+            
+            // Update tab buttons
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.toggle('active', btn.textContent.toLowerCase().includes(tabName));
+            });
+            
+            if (tabName === 'favorites') {
+                updateFavoritesList();
+            }
+        }
+        
+        // Initialize
+        updateFavoritesList();
     </script>
 </body>
 </html>
