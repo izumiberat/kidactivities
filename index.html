@@ -119,7 +119,6 @@
             color: white;
         }
         #favorites-list {
-            display: none;
             margin-top: 1.25rem;
         }
         .tab-buttons {
@@ -150,6 +149,11 @@
             text-align: center;
             padding: 1rem;
             color: #666;
+        }
+        .error {
+            color: var(--danger);
+            text-align: center;
+            padding: 1rem;
         }
     </style>
 </head>
@@ -239,47 +243,81 @@
     </div>
     
     <div id="favorites-tab" style="display: none;">
-        <div id="favorites-list"></div>
+        <div id="favorites-list">
+            <p>Loading favorites...</p>
+        </div>
     </div>
     
     <script>
         // Global variables
         let activities = [];
-        let favorites = JSON.parse(localStorage.getItem('playideas-favorites')) || [];
+        let favorites = [];
+        let currentActivity = null;
+        let activitiesLoaded = false;
         
         // Load activities from JSON file
         async function loadActivities() {
             try {
+                console.log('Loading activities...');
                 const response = await fetch('./activities.json?t=' + Date.now());
-                if (!response.ok) throw new Error("Failed to load activities");
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
                 const data = await response.json();
-                activities = data.activities;
+                activities = data.activities || [];
+                activitiesLoaded = true;
+                console.log(`Loaded ${activities.length} activities`);
+                
+                // Load favorites after activities are loaded
+                loadFavorites();
+                
+                // Generate initial activity
                 generateActivity();
+                
+                // Update favorites list if we're on that tab
+                updateFavoritesList();
+                
             } catch (error) {
                 console.error("Error loading activities:", error);
-                document.getElementById('result').innerHTML = `
-                    <div style="color: var(--danger);">
-                        Error loading activities. Please refresh the page.
+                const resultDiv = document.getElementById('result');
+                resultDiv.innerHTML = `
+                    <div class="error">
+                        Error loading activities: ${error.message}<br>
+                        Please make sure activities.json is in the same directory as this HTML file.
                     </div>
                 `;
-                // Fallback activities
-                activities = [
-                    {
-                        id: 999,
-                        age: "3-5",
-                        location: "indoor",
-                        materials: ["none"],
-                        independent: true,
-                        duration: "quick",
-                        text: "Drawing game: Grab paper and pencils to create funny characters together!"
-                    }
-                ];
+                resultDiv.style.display = "block";
+                activitiesLoaded = false;
+            }
+        }
+        
+        // Load favorites from localStorage
+        function loadFavorites() {
+            try {
+                const stored = localStorage.getItem('playideas-favorites');
+                favorites = stored ? JSON.parse(stored) : [];
+                console.log(`Loaded ${favorites.length} favorites:`, favorites);
+            } catch (error) {
+                console.error('Error loading favorites:', error);
+                favorites = [];
+            }
+        }
+        
+        // Save favorites to localStorage
+        function saveFavorites() {
+            try {
+                localStorage.setItem('playideas-favorites', JSON.stringify(favorites));
+                console.log('Saved favorites:', favorites);
+            } catch (error) {
+                console.error('Error saving favorites:', error);
             }
         }
         
         // Generate activity based on filters
         function generateActivity() {
-            if (activities.length === 0) return;
+            if (!activitiesLoaded || activities.length === 0) {
+                return;
+            }
             
             // Get user selections
             const age = document.getElementById("age").value;
@@ -291,27 +329,43 @@
             const materialCheckboxes = document.querySelectorAll('.materials input[type="checkbox"]:checked');
             const materials = Array.from(materialCheckboxes).map(cb => cb.value);
             
+            console.log('Filters:', { age, location, availability, duration, materials });
+            
             // Find matching activities
-            let matchingActivities = activities.filter(activity => 
-                activity.age === age && 
-                activity.location === location &&
-                activity.duration === duration &&
-                (availability === "available" || activity.independent === true)
-            );
+            let matchingActivities = activities.filter(activity => {
+                const ageMatch = activity.age === age;
+                const locationMatch = activity.location === location;
+                const durationMatch = activity.duration === duration;
+                const availabilityMatch = availability === "available" || activity.independent === true;
+                
+                return ageMatch && locationMatch && durationMatch && availabilityMatch;
+            });
+            
+            console.log(`Found ${matchingActivities.length} activities after basic filters`);
             
             // Filter by materials if any are selected (and not just "none")
             if (materials.length > 0 && !(materials.length === 1 && materials[0] === "none")) {
-                matchingActivities = matchingActivities.filter(activity =>
-                    activity.materials[0] === "none" || 
-                    activity.materials.some(m => materials.includes(m))
-                );
+                matchingActivities = matchingActivities.filter(activity => {
+                    // If activity requires no materials, it matches
+                    if (activity.materials.includes("none")) {
+                        return true;
+                    }
+                    // Check if user has any of the required materials
+                    return activity.materials.some(material => materials.includes(material));
+                });
             }
+            
+            console.log(`Found ${matchingActivities.length} activities after material filters`);
             
             // Display result
             const resultDiv = document.getElementById("result");
             if (matchingActivities.length > 0) {
                 const randomActivity = matchingActivities[Math.floor(Math.random() * matchingActivities.length)];
+                currentActivity = randomActivity;
                 const isFavorite = favorites.includes(randomActivity.id);
+                
+                console.log('Selected activity:', randomActivity);
+                console.log('Is favorite:', isFavorite);
                 
                 resultDiv.innerHTML = `
                     <h3>Here's your play idea:</h3>
@@ -341,32 +395,49 @@
         
         // Toggle activity favorite status
         function toggleFavorite(activityId, button) {
+            console.log('Toggling favorite for activity ID:', activityId);
             const index = favorites.indexOf(activityId);
+            
             if (index === -1) {
                 favorites.push(activityId);
                 button.textContent = '★ Saved to Favorites';
                 button.classList.add('saved');
+                console.log('Added to favorites');
             } else {
                 favorites.splice(index, 1);
                 button.textContent = '☆ Save to Favorites';
                 button.classList.remove('saved');
+                console.log('Removed from favorites');
             }
-            localStorage.setItem('playideas-favorites', JSON.stringify(favorites));
+            
+            saveFavorites();
             updateFavoritesList();
         }
         
         // Update favorites list display
         function updateFavoritesList() {
             const favoritesList = document.getElementById("favorites-list");
+            
+            if (!activitiesLoaded) {
+                favoritesList.innerHTML = "<p>Loading activities...</p>";
+                return;
+            }
+            
             if (favorites.length === 0) {
                 favoritesList.innerHTML = "<p>You haven't saved any favorites yet. Generate some ideas and click 'Save to Favorites'!</p>";
                 return;
             }
             
+            console.log('Updating favorites list with:', favorites);
+            
             let html = "<h3>Your Saved Favorites:</h3>";
+            let foundFavorites = 0;
+            
             favorites.forEach(favId => {
                 const activity = activities.find(a => a.id === favId);
                 if (activity) {
+                    foundFavorites++;
+                    console.log('Found favorite activity:', activity);
                     html += `
                         <div class="favorite-item">
                             <div class="activity-meta">
@@ -376,30 +447,42 @@
                                 <span>Age ${activity.age}</span>
                             </div>
                             <div class="activity-text">${activity.text}</div>
-                            <button onclick="removeFavorite(${activity.id})" style="background: var(--danger); padding: 0.25rem 0.5rem; font-size: 0.8rem;">Remove</button>
+                            <button onclick="removeFavorite(${activity.id})" style="background: var(--danger); padding: 0.25rem 0.5rem; font-size: 0.8rem; color: white;">Remove</button>
                         </div>
                     `;
+                } else {
+                    console.log('Activity not found for ID:', favId);
                 }
             });
+            
+            if (foundFavorites === 0) {
+                html += "<p>No favorite activities found. The activities database might have changed.</p>";
+            }
+            
             favoritesList.innerHTML = html;
+            console.log(`Displayed ${foundFavorites} favorite activities`);
         }
         
         // Remove from favorites
         function removeFavorite(activityId) {
+            console.log('Removing favorite:', activityId);
             favorites = favorites.filter(id => id !== activityId);
-            localStorage.setItem('playideas-favorites', JSON.stringify(favorites));
+            saveFavorites();
             updateFavoritesList();
             
             // Update any visible favorite button in the results
-            const favBtn = document.querySelector(`.favorite-btn[onclick*="${activityId}"]`);
-            if (favBtn) {
-                favBtn.textContent = '☆ Save to Favorites';
-                favBtn.classList.remove('saved');
+            if (currentActivity && currentActivity.id === activityId) {
+                const favBtn = document.querySelector('.favorite-btn');
+                if (favBtn) {
+                    favBtn.textContent = '☆ Save to Favorites';
+                    favBtn.classList.remove('saved');
+                }
             }
         }
         
         // Switch between tabs
         function showTab(tabName) {
+            console.log('Switching to tab:', tabName);
             document.getElementById('generator-tab').style.display = tabName === 'generator' ? 'block' : 'none';
             document.getElementById('favorites-tab').style.display = tabName === 'favorites' ? 'block' : 'none';
             
@@ -415,9 +498,21 @@
         
         // Initialize on load
         window.onload = function() {
+            console.log('Page loaded, initializing...');
             loadActivities();
-            updateFavoritesList();
         };
+        
+        // Debug function to check current state
+        function debugState() {
+            console.log('Current state:');
+            console.log('Activities loaded:', activitiesLoaded);
+            console.log('Total activities:', activities.length);
+            console.log('Current favorites:', favorites);
+            console.log('Current activity:', currentActivity);
+        }
+        
+        // Make debug function available globally
+        window.debugState = debugState;
     </script>
 </body>
 </html>
