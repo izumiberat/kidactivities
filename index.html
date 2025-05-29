@@ -13,7 +13,6 @@
             --success: #28a745;
             --warning: #ffc107;
             --danger: #dc3545;
-            --border: #e0e0e0;
         }
         * {
             box-sizing: border-box;
@@ -35,224 +34,290 @@
             margin-bottom: 1.5rem;
             padding-top: 1rem;
         }
-
-        /* Filter chips for selected options */
-        .filter-chips {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            margin-bottom: 1rem;
-            padding: 0.75rem;
+        
+        /* Quick Actions Section */
+        .quick-actions {
             background: white;
-            border-radius: 10px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-            min-height: 60px;
-            align-items: center;
+            padding: 1.5rem;
+            border-radius: 15px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+            text-align: center;
         }
-        .chip {
-            background: var(--primary);
-            color: white;
-            padding: 0.25rem 0.75rem;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            display: flex;
-            align-items: center;
-            gap: 0.25rem;
-        }
-        .chip-materials {
-            background: var(--success);
-        }
-        .filter-chips:empty::before {
-            content: "Make your selections below to see filters here";
-            color: #666;
-            font-style: italic;
-        }
-
-        /* Collapsible form groups */
-        .form-group {
-            margin-bottom: 0.75rem;
-            background: white;
-            border-radius: 10px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-            overflow: hidden;
-            transition: all 0.3s ease;
-        }
-        .form-group.collapsed {
-            margin-bottom: 0.5rem;
-        }
-        .form-header {
-            padding: 1rem 1.25rem;
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: white;
-            border-bottom: 1px solid var(--border);
-            transition: background-color 0.2s;
-        }
-        .form-header:hover {
-            background: #f8f9fa;
-        }
-        .form-group.collapsed .form-header {
-            border-bottom: none;
-            padding-bottom: 1rem;
-        }
-        .form-content {
-            padding: 0 1.25rem 1.25rem 1.25rem;
-            transition: all 0.3s ease;
-        }
-        .form-group.collapsed .form-content {
-            max-height: 0;
-            padding: 0 1.25rem;
-            overflow: hidden;
-        }
-        .collapse-icon {
-            transition: transform 0.3s ease;
-            font-size: 1.2rem;
+        
+        .quick-actions h2 {
             color: var(--primary);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
         }
-        .form-group.collapsed .collapse-icon {
-            transform: rotate(-90deg);
+        
+        .quick-buttons {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
         }
-
+        
+        @media (max-width: 480px) {
+            .quick-buttons {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .quick-btn {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            border: none;
+            padding: 1rem;
+            border-radius: 12px;
+            cursor: pointer;
+            font-size: 0.95rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(67, 97, 238, 0.3);
+        }
+        
+        .quick-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 16px rgba(67, 97, 238, 0.4);
+        }
+        
+        .instant-btn {
+            background: linear-gradient(135deg, var(--success), #20c997);
+            padding: 1.25rem;
+            font-size: 1.1rem;
+            border-radius: 15px;
+            margin-top: 1rem;
+            box-shadow: 0 4px 12px rgba(40, 167, 69, 0.3);
+        }
+        
+        .instant-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(40, 167, 69, 0.4);
+        }
+        
+        /* Compact Form */
+        .compact-form {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 15px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+        
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+        
+        @media (max-width: 480px) {
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .form-group {
+            margin-bottom: 1rem;
+        }
+        
         label {
             display: block;
             margin-bottom: 0.5rem;
             font-weight: 600;
-        }
-        .form-header label {
-            margin-bottom: 0;
-            flex-grow: 1;
-        }
-        select, .materials, .duration-options {
-            width: 100%;
-            padding: 0.75rem;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            font-size: 1rem;
-            background: white;
-        }
-        .materials, .duration-options {
-            columns: 2;
-            column-gap: 1rem;
-            padding: 0;
-            border: none;
-        }
-        @media (max-width: 480px) {
-            .materials, .duration-options {
-                columns: 1;
-            }
-        }
-        .checkbox-item, .radio-item {
-            margin-bottom: 0.5rem;
-            break-inside: avoid;
-            display: flex;
-            align-items: center;
-        }
-        button {
-            background-color: var(--primary);
-            color: white;
-            border: none;
-            padding: 0.75rem;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 1rem;
-            width: 100%;
-            font-weight: 600;
-            transition: background-color 0.2s;
-            margin-bottom: 1.25rem;
-        }
-        button:hover {
-            background-color: var(--secondary);
-        }
-        .expand-all-btn {
-            background-color: #6c757d;
-            margin-bottom: 1rem;
-            padding: 0.5rem;
             font-size: 0.9rem;
         }
-        .expand-all-btn:hover {
-            background-color: #5a6268;
-        }
-        #result {
-            margin-top: 1.25rem;
-            padding: 1.25rem;
+        
+        select {
+            width: 100%;
+            padding: 0.75rem;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            font-size: 1rem;
             background: white;
-            border-radius: 10px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-            display: none;
+            transition: border-color 0.2s;
         }
+        
+        select:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+        
+        .radio-group {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+        
+        .radio-btn {
+            background: #f8f9fa;
+            border: 2px solid #e9ecef;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-size: 0.9rem;
+            flex: 1;
+            text-align: center;
+            min-width: fit-content;
+        }
+        
+        .radio-btn.selected {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+        
+        .radio-btn:hover {
+            border-color: var(--primary);
+        }
+        
+        /* Materials as tags */
+        .materials-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+        }
+        
+        .material-tag {
+            background: #f8f9fa;
+            border: 2px solid #e9ecef;
+            padding: 0.4rem 0.8rem;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-size: 0.85rem;
+        }
+        
+        .material-tag.selected {
+            background: var(--warning);
+            border-color: var(--warning);
+            color: var(--dark);
+        }
+        
+        .material-tag:hover {
+            border-color: var(--warning);
+        }
+        
+        /* Results */
+        #result {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 15px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+            display: none;
+            position: sticky;
+            top: 20px;
+            z-index: 10;
+        }
+        
         .activity-text {
             font-size: 1.1rem;
             margin-bottom: 1rem;
+            line-height: 1.6;
         }
+        
         .activity-meta {
             display: flex;
             gap: 10px;
-            margin-bottom: 0.5rem;
+            margin-bottom: 1rem;
             font-size: 0.9rem;
             color: #666;
             flex-wrap: wrap;
         }
+        
+        .meta-tag {
+            background: var(--light);
+            padding: 0.25rem 0.5rem;
+            border-radius: 10px;
+            border: 1px solid #dee2e6;
+        }
+        
         .favorite-btn {
             background-color: var(--warning);
             color: var(--dark);
-            display: block;
-            margin-top: 1rem;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.2s;
         }
+        
         .favorite-btn:hover {
             background-color: #e0a800;
+            transform: translateY(-1px);
         }
+        
         .saved {
             background-color: var(--success);
             color: white;
         }
-        #favorites-list {
-            margin-top: 1.25rem;
-        }
+        
+        /* Tab system */
         .tab-buttons {
             display: flex;
-            margin-bottom: 1.25rem;
+            margin-bottom: 1.5rem;
             gap: 0.25rem;
+            background: white;
+            padding: 0.25rem;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
         }
+        
         .tab-btn {
             flex: 1;
-            border-radius: 8px 8px 0 0;
+            border-radius: 10px;
+            background: transparent;
+            border: none;
+            padding: 0.75rem;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.2s;
         }
+        
         .tab-btn.active {
-            background-color: var(--secondary);
+            background-color: var(--primary);
+            color: white;
         }
+        
+        /* Favorites */
+        #favorites-list {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 15px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        
         .favorite-item {
             margin-bottom: 1rem;
             padding: 1rem;
-            background: white;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-        input[type="checkbox"], 
-        input[type="radio"] {
-            margin-right: 8px;
-            accent-color: var(--primary);
-        }
-        .loading {
-            text-align: center;
-            padding: 1rem;
-            color: #666;
-        }
-        .error {
-            color: var(--danger);
-            text-align: center;
-            padding: 1rem;
+            background: var(--light);
+            border-radius: 10px;
+            border-left: 4px solid var(--primary);
         }
         
-        /* Smooth scroll behavior */
-        html {
-            scroll-behavior: smooth;
+        .loading, .error {
+            text-align: center;
+            padding: 2rem;
+            color: #666;
+        }
+        
+        .error {
+            color: var(--danger);
+        }
+        
+        /* Hide native radio buttons */
+        input[type="radio"] {
+            display: none;
         }
     </style>
 </head>
 <body>
-    <h1>PlayIdeas Generator</h1>
+    <h1>🎮 PlayIdeas</h1>
     
     <div class="tab-buttons">
         <button class="tab-btn active" onclick="showTab('generator')">Get Ideas</button>
@@ -260,205 +325,104 @@
     </div>
     
     <div id="generator-tab">
-        <!-- Filter chips showing current selections -->
-        <div class="filter-chips" id="filter-chips"></div>
-        
-        <!-- Expand/Collapse all button -->
-        <button class="expand-all-btn" onclick="toggleAllSections()">📝 Expand All Sections</button>
-        
-        <div class="form-group" id="age-group">
-            <div class="form-header" onclick="toggleSection('age-group')">
-                <label for="age">Child's Age:</label>
-                <span class="collapse-icon">▼</span>
+        <!-- Quick Actions Section -->
+        <div class="quick-actions">
+            <h2>🚀 Need something NOW?</h2>
+            <div class="quick-buttons">
+                <button class="quick-btn" onclick="quickActivity('indoor', 'quick')">🏠 Quick Indoor</button>
+                <button class="quick-btn" onclick="quickActivity('outdoor', 'quick')">🌳 Quick Outdoor</button>
+                <button class="quick-btn" onclick="quickActivity('indoor', 'medium')">🏠 Indoor 30min</button>
+                <button class="quick-btn" onclick="quickActivity('outdoor', 'medium')">🌳 Outdoor 30min</button>
             </div>
-            <div class="form-content">
-                <select id="age" onchange="handleAgeChange()">
-                    <option value="0-2">0-2 years</option>
-                    <option value="3-5">3-5 years</option>
-                    <option value="6-8">6-8 years</option>
-                    <option value="9-12">9-12 years</option>
-                    <option value="12+">12+ years</option>
-                </select>
-            </div>
+            <button class="quick-btn instant-btn" onclick="instantActivity()">
+                ✨ SURPRISE ME! (Any activity)
+            </button>
         </div>
         
-        <div class="form-group" id="location-group">
-            <div class="form-header" onclick="toggleSection('location-group')">
-                <label>Location:</label>
-                <span class="collapse-icon">▼</span>
-            </div>
-            <div class="form-content">
-                <div class="radio-item">
-                    <input type="radio" id="indoor" name="location" value="indoor" checked onchange="generateActivity()">
-                    <label for="indoor">🏠 Indoor</label>
-                </div>
-                <div class="radio-item">
-                    <input type="radio" id="outdoor" name="location" value="outdoor" onchange="generateActivity()">
-                    <label for="outdoor">🌳 Outdoor</label>
-                </div>
-            </div>
-        </div>
-        
-        <div class="form-group" id="availability-group">
-            <div class="form-header" onclick="toggleSection('availability-group')">
-                <label>Parent Availability:</label>
-                <span class="collapse-icon">▼</span>
-            </div>
-            <div class="form-content">
-                <div class="radio-item">
-                    <input type="radio" id="available" name="availability" value="available" checked onchange="generateActivity()">
-                    <label for="available">👨‍👧 I can play too</label>
-                </div>
-                <div class="radio-item">
-                    <input type="radio" id="independent" name="availability" value="independent" onchange="generateActivity()">
-                    <label for="independent">🧒 Need independent activity</label>
-                </div>
-            </div>
-        </div>
-        
-        <div class="form-group" id="duration-group">
-            <div class="form-header" onclick="toggleSection('duration-group')">
-                <label>Duration:</label>
-                <span class="collapse-icon">▼</span>
-            </div>
-            <div class="form-content">
-                <div class="duration-options">
-                    <div class="radio-item">
-                        <input type="radio" id="quick" name="duration" value="quick" checked onchange="generateActivity()">
-                        <label for="quick">⏱️ Quick (&lt;15 min)</label>
-                    </div>
-                    <div class="radio-item">
-                        <input type="radio" id="medium" name="duration" value="medium" onchange="generateActivity()">
-                        <label for="medium">⏳ Medium (15-30 min)</label>
-                    </div>
-                    <div class="radio-item">
-                        <input type="radio" id="long" name="duration" value="long" onchange="generateActivity()">
-                        <label for="long">⌛ Long (30+ min)</label>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <div class="form-group" id="materials-group">
-            <div class="form-header" onclick="toggleSection('materials-group')">
-                <label>Available Materials:</label>
-                <span class="collapse-icon">▼</span>
-            </div>
-            <div class="form-content">
-                <div class="materials">
-                    <div class="checkbox-item"><input type="checkbox" id="paper" value="paper" onchange="generateActivity()"><label for="paper">📄 Paper</label></div>
-                    <div class="checkbox-item"><input type="checkbox" id="pencils" value="pencils" onchange="generateActivity()"><label for="pencils">✏️ Pencils/Markers</label></div>
-                    <div class="checkbox-item"><input type="checkbox" id="scissors" value="scissors" onchange="generateActivity()"><label for="scissors">✂️ Scissors</label></div>
-                    <div class="checkbox-item"><input type="checkbox" id="tape" value="tape" onchange="generateActivity()"><label for="tape">📏 Tape/Glue</label></div>
-                    <div class="checkbox-item"><input type="checkbox" id="ball" value="ball" onchange="generateActivity()"><label for="ball">🏀 Ball</label></div>
-                    <div class="checkbox-item"><input type="checkbox" id="blocks" value="blocks" onchange="generateActivity()"><label for="blocks">🧱 Blocks/Lego</label></div>
-                    <div class="checkbox-item"><input type="checkbox" id="dolls" value="dolls" onchange="generateActivity()"><label for="dolls">🧸 Dolls/Stuffed Animals</label></div>
-                    <div class="checkbox-item"><input type="checkbox" id="cards" value="cards" onchange="generateActivity()"><label for="cards">🃏 Playing Cards</label></div>
-                    <div class="checkbox-item"><input type="checkbox" id="blanket" value="blanket" onchange="generateActivity()"><label for="blanket">🛏️ Blanket</label></div>
-                    <div class="checkbox-item"><input type="checkbox" id="none" value="none" onchange="generateActivity()"><label for="none">❌ Nothing special</label></div>
-                </div>
-            </div>
-        </div>
-        
-        <button onclick="generateActivity()">Generate Play Idea!</button>
-        
+        <!-- Results appear here when generated -->
         <div id="result">
             <div class="loading">Loading activities...</div>
+        </div>
+        
+        <!-- Compact Custom Form -->
+        <div class="compact-form">
+            <h3 style="margin-bottom: 1rem; color: var(--primary);">🎯 Or customize your search:</h3>
+            
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="age">Child's Age:</label>
+                    <select id="age" onchange="handleAgeChange()">
+                        <option value="0-2">0-2 years</option>
+                        <option value="3-5">3-5 years</option>
+                        <option value="6-8">6-8 years</option>
+                        <option value="9-12">9-12 years</option>
+                        <option value="12+">12+ years</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label>Location:</label>
+                    <div class="radio-group">
+                        <div class="radio-btn selected" data-name="location" data-value="indoor">🏠 Indoor</div>
+                        <div class="radio-btn" data-name="location" data-value="outdoor">🌳 Outdoor</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Duration:</label>
+                    <div class="radio-group">
+                        <div class="radio-btn selected" data-name="duration" data-value="quick">⏱️ Quick</div>
+                        <div class="radio-btn" data-name="duration" data-value="medium">⏳ Medium</div>
+                        <div class="radio-btn" data-name="duration" data-value="long">⌛ Long</div>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label>Your availability:</label>
+                    <div class="radio-group">
+                        <div class="radio-btn selected" data-name="availability" data-value="available">👨‍👧 Can help</div>
+                        <div class="radio-btn" data-name="availability" data-value="independent">🧒 Independent</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label>What do you have handy? (tap any that apply)</label>
+                <div class="materials-tags">
+                    <div class="material-tag" data-value="paper">📄 Paper</div>
+                    <div class="material-tag" data-value="pencils">✏️ Pencils</div>
+                    <div class="material-tag" data-value="scissors">✂️ Scissors</div>
+                    <div class="material-tag" data-value="tape">📏 Tape/Glue</div>
+                    <div class="material-tag" data-value="ball">🏀 Ball</div>
+                    <div class="material-tag" data-value="blocks">🧱 Blocks</div>
+                    <div class="material-tag" data-value="dolls">🧸 Toys</div>
+                    <div class="material-tag" data-value="cards">🃏 Cards</div>
+                    <div class="material-tag" data-value="blanket">🛏️ Blanket</div>
+                    <div class="material-tag" data-value="none">❌ Nothing special</div>
+                </div>
+            </div>
+            
+            <button onclick="generateActivity()" style="background: var(--primary); color: white; border: none; padding: 1rem; border-radius: 10px; width: 100%; font-size: 1.1rem; font-weight: 600; margin-top: 1rem; cursor: pointer;">
+                🎲 Generate Custom Activity
+            </button>
         </div>
     </div>
     
     <div id="favorites-tab" style="display: none;">
         <div id="favorites-list">
-            <p>Loading favorites...</p>
+            <p class="loading">Loading favorites...</p>
         </div>
     </div>
     
     <script>
         // Global variables
-        let activities = []; // Will hold current age group activities
-        let allActivities = {}; // Cache for all loaded age groups
+        let activities = [];
+        let allActivities = {};
         let favorites = [];
         let currentActivity = null;
         let activitiesLoaded = false;
-        let allSectionsExpanded = true;
-        
-        // Toggle individual section
-        function toggleSection(sectionId) {
-            const section = document.getElementById(sectionId);
-            section.classList.toggle('collapsed');
-            updateFilterChips();
-        }
-        
-        // Toggle all sections
-        function toggleAllSections() {
-            const sections = document.querySelectorAll('.form-group');
-            const btn = document.querySelector('.expand-all-btn');
-            
-            if (allSectionsExpanded) {
-                // Collapse all
-                sections.forEach(section => section.classList.add('collapsed'));
-                btn.textContent = '📋 Expand All Sections';
-                allSectionsExpanded = false;
-            } else {
-                // Expand all
-                sections.forEach(section => section.classList.remove('collapsed'));
-                btn.textContent = '📝 Collapse All Sections';
-                allSectionsExpanded = true;
-            }
-        }
-        
-        // Update filter chips display
-        function updateFilterChips() {
-            const chipsContainer = document.getElementById('filter-chips');
-            const chips = [];
-            
-            // Age chip
-            const age = document.getElementById("age").value;
-            chips.push(`<span class="chip">👶 Age ${age}</span>`);
-            
-            // Location chip
-            const location = document.querySelector('input[name="location"]:checked').value;
-            chips.push(`<span class="chip">${location === 'indoor' ? '🏠' : '🌳'} ${location}</span>`);
-            
-            // Availability chip
-            const availability = document.querySelector('input[name="availability"]:checked').value;
-            chips.push(`<span class="chip">${availability === 'available' ? '👨‍👧' : '🧒'} ${availability === 'available' ? 'Parent joins' : 'Independent'}</span>`);
-            
-            // Duration chip
-            const duration = document.querySelector('input[name="duration"]:checked').value;
-            const durationEmoji = duration === 'quick' ? '⏱️' : duration === 'medium' ? '⏳' : '⌛';
-            chips.push(`<span class="chip">${durationEmoji} ${duration}</span>`);
-            
-            // Materials chips
-            const materialCheckboxes = document.querySelectorAll('.materials input[type="checkbox"]:checked');
-            const materials = Array.from(materialCheckboxes).map(cb => cb.value);
-            if (materials.length > 0) {
-                const materialsText = materials.length > 3 ? `${materials.length} materials` : materials.join(', ');
-                chips.push(`<span class="chip chip-materials">🎨 ${materialsText}</span>`);
-            }
-            
-            chipsContainer.innerHTML = chips.join('');
-        }
-        
-        // Auto-collapse sections after selection (except age)
-        function autoCollapseSection(sectionId) {
-            if (sectionId !== 'age-group') {
-                setTimeout(() => {
-                    const section = document.getElementById(sectionId);
-                    if (section && !section.classList.contains('collapsed')) {
-                        section.classList.add('collapsed');
-                    }
-                }, 1000); // Delay to let user see their selection
-            }
-        }
-        
-        // Handle age change - load new activities if needed
-        async function handleAgeChange() {
-            const ageGroup = document.getElementById("age").value;
-            await loadActivities(ageGroup);
-            generateActivity();
-            updateFilterChips();
-        }
         
         // Load activities for specific age group
         async function loadActivities(ageGroup) {
@@ -470,32 +434,54 @@
             }
             
             try {
+                // Show loading in result area
                 const resultDiv = document.getElementById("result");
-                resultDiv.innerHTML = `<div class="loading">Loading activities for ${ageGroup}...</div>`;
+                resultDiv.innerHTML = `<div class="loading">Loading activities for ${ageGroup} years...</div>`;
                 resultDiv.style.display = "block";
                 
                 console.log(`Loading activities for age group: ${ageGroup}`);
-                const response = await fetch(`./activities-${ageGroup}.json?t=${Date.now()}`);
+                
+                // Map age groups to filenames
+                const fileMap = {
+                    "0-2": "activities-0-2.json",
+                    "3-5": "activities-3-5.json", 
+                    "6-8": "activities-6-8.json",
+                    "9-12": "activities-9-12.json",
+                    "12+": "activities-12plus.json"
+                };
+                
+                const filename = fileMap[ageGroup];
+                if (!filename) {
+                    throw new Error(`No filename mapping for age group: ${ageGroup}`);
+                }
+                
+                const response = await fetch(`./${filename}?t=${Date.now()}`);
                 
                 if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
+                    throw new Error(`HTTP error! status: ${response.status} - Could not load ${filename}`);
                 }
                 
                 const data = await response.json();
-                activities = data.activities || [];
+                activities = data.activities || data || []; // Handle different JSON structures
                 allActivities[ageGroup] = activities; // Cache it
                 activitiesLoaded = true;
                 
                 console.log(`Loaded ${activities.length} activities for ${ageGroup}`);
-                loadFavorites();
+                
+                // Hide loading message
+                resultDiv.style.display = "none";
                 
             } catch (error) {
                 console.error(`Error loading activities for ${ageGroup}:`, error);
                 const resultDiv = document.getElementById("result");
                 resultDiv.innerHTML = `
                     <div class="error">
-                        Error loading activities: ${error.message}<br>
-                        Please make sure activities-${ageGroup}.json exists.
+                        <h3 style="color: var(--danger); margin-bottom: 1rem;">😞 Oops! Couldn't load activities</h3>
+                        <p style="margin-bottom: 1rem;">Error: ${error.message}</p>
+                        <p style="font-size: 0.9rem; color: #666;">Make sure the JSON files are in the same folder as this HTML file.</p>
+                        <button onclick="location.reload()" style="background: var(--primary); color: white; border: none; padding: 0.75rem 1.5rem; border-radius: 8px; cursor: pointer; margin-top: 1rem;">
+                            🔄 Try Again
+                        </button>
                     </div>
                 `;
                 resultDiv.style.display = "block";
@@ -503,7 +489,79 @@
             }
         }
         
-        // Load favorites from localStorage
+        // Handle radio button groups
+        document.addEventListener('click', function(e) {
+            if (e.target.classList.contains('radio-btn')) {
+                const group = e.target.getAttribute('data-name');
+                const value = e.target.getAttribute('data-value');
+                
+                // Remove selected class from siblings
+                const siblings = e.target.parentElement.querySelectorAll('.radio-btn');
+                siblings.forEach(btn => btn.classList.remove('selected'));
+                
+                // Add selected class to clicked button
+                e.target.classList.add('selected');
+            }
+            
+            if (e.target.classList.contains('material-tag')) {
+                e.target.classList.toggle('selected');
+            }
+        });
+        
+        // Quick activity functions
+        async function quickActivity(location, duration) {
+            // Ensure activities are loaded first
+            if (!activitiesLoaded) {
+                await loadActivities(document.getElementById("age").value);
+            }
+            
+            // Set the form values
+            document.querySelector(`[data-name="location"][data-value="${location}"]`).click();
+            document.querySelector(`[data-name="duration"][data-value="${duration}"]`).click();
+            
+            // Generate activity
+            generateActivity();
+            
+            // Scroll to result
+            document.getElementById('result').scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+        
+        async function instantActivity() {
+            // Ensure activities are loaded first
+            if (!activitiesLoaded) {
+                await loadActivities(document.getElementById("age").value);
+            }
+            
+            // Pick completely random activity
+            if (activities.length > 0) {
+                const randomActivity = activities[Math.floor(Math.random() * activities.length)];
+                displayActivity(randomActivity);
+                document.getElementById('result').scrollIntoView({ behavior: 'smooth', block: 'center' });
+            } else {
+                // Show error if no activities loaded
+                const resultDiv = document.getElementById("result");
+                resultDiv.innerHTML = `
+                    <div class="error">
+                        <h3 style="color: var(--danger);">No activities available</h3>
+                        <p>Please check that the activity files are loaded correctly.</p>
+                    </div>
+                `;
+                resultDiv.style.display = "block";
+            }
+        }
+        
+        // Handle age change
+        async function handleAgeChange() {
+            const ageGroup = document.getElementById("age").value;
+            await loadActivities(ageGroup);
+            
+            // Only generate activity if form is already filled out
+            if (activitiesLoaded && activities.length > 0) {
+                generateActivity();
+            }
+        }
+        
+        // Load favorites from localStorage  
         function loadFavorites() {
             try {
                 const stored = localStorage.getItem('playideas-favorites');
@@ -525,27 +583,35 @@
             }
         }
         
-        // Generate activity based on filters
-        function generateActivity() {
-            updateFilterChips();
+        // Get current form values
+        function getFormValues() {
+            const age = document.getElementById("age").value;
+            const location = document.querySelector('[data-name="location"].selected').getAttribute('data-value');
+            const availability = document.querySelector('[data-name="availability"].selected').getAttribute('data-value');
+            const duration = document.querySelector('[data-name="duration"].selected').getAttribute('data-value');
+            const materials = Array.from(document.querySelectorAll('.material-tag.selected')).map(tag => tag.getAttribute('data-value'));
             
+            return { age, location, availability, duration, materials };
+        }
+        
+        // Generate activity
+        function generateActivity() {
             if (!activitiesLoaded || activities.length === 0) {
+                // Show a helpful message if activities aren't loaded yet
+                const resultDiv = document.getElementById("result");
+                resultDiv.innerHTML = `
+                    <div class="loading">
+                        <p>Loading activities... This will just take a moment!</p>
+                    </div>
+                `;
+                resultDiv.style.display = "block";
                 return;
             }
             
-            // Get user selections
-            const age = document.getElementById("age").value;
-            const location = document.querySelector('input[name="location"]:checked').value;
-            const availability = document.querySelector('input[name="availability"]:checked').value;
-            const duration = document.querySelector('input[name="duration"]:checked').value;
+            const { age, location, availability, duration, materials } = getFormValues();
             
-            // Get selected materials
-            const materialCheckboxes = document.querySelectorAll('.materials input[type="checkbox"]:checked');
-            const materials = Array.from(materialCheckboxes).map(cb => cb.value);
+            console.log('Generating activity with filters:', { age, location, availability, duration, materials });
             
-            console.log('Filters:', { age, location, availability, duration, materials });
-            
-            // Find matching activities
             let matchingActivities = activities.filter(activity => {
                 const ageMatch = activity.age === age;
                 const locationMatch = activity.location === location;
@@ -557,104 +623,100 @@
             
             console.log(`Found ${matchingActivities.length} activities after basic filters`);
             
-            // Filter by materials if any are selected (and not just "none")
+            // Filter by materials if any selected
             if (materials.length > 0 && !(materials.length === 1 && materials[0] === "none")) {
                 matchingActivities = matchingActivities.filter(activity => {
-                    // If activity requires no materials, it matches
-                    if (activity.materials.includes("none")) {
-                        return true;
-                    }
-                    // Check if user has any of the required materials
+                    if (activity.materials.includes("none")) return true;
                     return activity.materials.some(material => materials.includes(material));
                 });
             }
             
             console.log(`Found ${matchingActivities.length} activities after material filters`);
             
-            // Display result
             const resultDiv = document.getElementById("result");
             if (matchingActivities.length > 0) {
                 const randomActivity = matchingActivities[Math.floor(Math.random() * matchingActivities.length)];
-                currentActivity = randomActivity;
-                const isFavorite = favorites.includes(randomActivity.id);
-                
-                console.log('Selected activity:', randomActivity);
-                console.log('Is favorite:', isFavorite);
-                
-                resultDiv.innerHTML = `
-                    <h3>Here's your play idea:</h3>
-                    <div class="activity-meta">
-                        <span>${randomActivity.independent ? "🧒 Independent" : "👨‍👧 Parent-assisted"}</span>
-                        <span>${randomActivity.duration === "quick" ? "⏱️ Quick" : randomActivity.duration === "medium" ? "⏳ Medium" : "⌛ Long"}</span>
-                        <span>${randomActivity.location === "indoor" ? "🏠 Indoor" : "🌳 Outdoor"}</span>
-                    </div>
-                    <div class="activity-text">${randomActivity.text}</div>
-                    <button class="favorite-btn ${isFavorite ? 'saved' : ''}" 
-                            onclick="toggleFavorite(${randomActivity.id}, this)">
-                        ${isFavorite ? '★ Saved to Favorites' : '☆ Save to Favorites'}
-                    </button>
-                `;
-                
-                // Auto-scroll to result
-                setTimeout(() => {
-                    resultDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }, 100);
-                
+                displayActivity(randomActivity);
             } else {
                 resultDiv.innerHTML = `
-                    <p>No exact matches found. Try:</p>
-                    <ul>
-                        <li>Selecting fewer materials</li>
-                        <li>Changing duration or location</li>
-                        <li>Checking 'Nothing special' if you don't have specific items</li>
-                    </ul>
+                    <div style="text-align: center; padding: 2rem;">
+                        <h3 style="color: var(--warning); margin-bottom: 1rem;">🤔 No perfect matches found</h3>
+                        <p style="margin-bottom: 1rem;">Try adjusting your filters, or hit one of the quick buttons above for instant ideas!</p>
+                        <button onclick="instantActivity()" style="background: var(--success); color: white; border: none; padding: 1rem 2rem; border-radius: 10px; cursor: pointer; font-weight: 600;">
+                            ✨ Just give me ANY activity!
+                        </button>
+                    </div>
                 `;
             }
             resultDiv.style.display = "block";
         }
         
-        // Toggle activity favorite status
+        // Display activity
+        function displayActivity(activity) {
+            currentActivity = activity;
+            const isFavorite = favorites.includes(activity.id);
+            
+            const resultDiv = document.getElementById("result");
+            resultDiv.innerHTML = `
+                <div style="text-align: center; margin-bottom: 1rem;">
+                    <h2 style="color: var(--success); margin-bottom: 0.5rem;">🎉 Perfect! Here's your activity:</h2>
+                </div>
+                <div class="activity-meta">
+                    <span class="meta-tag">${activity.independent ? "🧒 Independent" : "👨‍👧 Parent-assisted"}</span>
+                    <span class="meta-tag">${activity.duration === "quick" ? "⏱️ Under 15min" : activity.duration === "medium" ? "⏳ 15-30min" : "⌛ 30+ min"}</span>
+                    <span class="meta-tag">${activity.location === "indoor" ? "🏠 Indoor" : "🌳 Outdoor"}</span>
+                </div>
+                <div class="activity-text">${activity.text}</div>
+                <div style="text-align: center; margin-top: 1.5rem;">
+                    <button class="favorite-btn ${isFavorite ? 'saved' : ''}" 
+                            onclick="toggleFavorite(${activity.id}, this)">
+                        ${isFavorite ? '★ Saved to Favorites' : '☆ Save to Favorites'}
+                    </button>
+                    <button onclick="generateActivity()" style="background: var(--primary); color: white; border: none; padding: 0.75rem 1.5rem; border-radius: 10px; cursor: pointer; font-weight: 600; margin-left: 1rem;">
+                        🎲 Try Another
+                    </button>
+                </div>
+            `;
+        }
+        
+        // Toggle favorite
         function toggleFavorite(activityId, button) {
-            console.log('Toggling favorite for activity ID:', activityId);
             const index = favorites.indexOf(activityId);
             
             if (index === -1) {
                 favorites.push(activityId);
                 button.textContent = '★ Saved to Favorites';
                 button.classList.add('saved');
-                console.log('Added to favorites');
             } else {
                 favorites.splice(index, 1);
                 button.textContent = '☆ Save to Favorites';
                 button.classList.remove('saved');
-                console.log('Removed from favorites');
             }
             
             saveFavorites();
             updateFavoritesList();
         }
         
-        // Update favorites list display
+        // Update favorites list
         function updateFavoritesList() {
             const favoritesList = document.getElementById("favorites-list");
             
-            if (!activitiesLoaded) {
-                favoritesList.innerHTML = "<p>Loading activities...</p>";
-                return;
-            }
-            
             if (favorites.length === 0) {
-                favoritesList.innerHTML = "<p>You haven't saved any favorites yet. Generate some ideas and click 'Save to Favorites'!</p>";
+                favoritesList.innerHTML = `
+                    <div style="text-align: center; padding: 2rem;">
+                        <h3 style="color: var(--primary); margin-bottom: 1rem;">📝 No favorites yet!</h3>
+                        <p>Generate some activities and save your favorites for quick access later.</p>
+                        <button onclick="showTab('generator')" style="background: var(--primary); color: white; border: none; padding: 1rem 2rem; border-radius: 10px; cursor: pointer; font-weight: 600; margin-top: 1rem;">
+                            🎮 Generate Activities
+                        </button>
+                    </div>
+                `;
                 return;
             }
             
-            console.log('Updating favorites list with:', favorites);
-            
-            let html = "<h3>Your Saved Favorites:</h3>";
-            let foundFavorites = 0;
+            let html = "<h3 style='margin-bottom: 1rem; color: var(--primary);'>⭐ Your Saved Favorites:</h3>";
             
             favorites.forEach(favId => {
-                // Search all cached age groups for the activity
                 let activity = null;
                 for (const ageGroup in allActivities) {
                     const found = allActivities[ageGroup].find(a => a.id === favId);
@@ -665,41 +727,32 @@
                 }
                 
                 if (activity) {
-                    foundFavorites++;
-                    console.log('Found favorite activity:', activity);
                     html += `
                         <div class="favorite-item">
-                            <div class="activity-meta">
-                                <span>${activity.independent ? "🧒 Independent" : "👨‍👧 Parent-assisted"}</span>
-                                <span>${activity.duration === "quick" ? "⏱️ Quick" : activity.duration === "medium" ? "⏳ Medium" : "⌛ Long"}</span>
-                                <span>${activity.location === "indoor" ? "🏠 Indoor" : "🌳 Outdoor"}</span>
-                                <span>Age ${activity.age}</span>
+                            <div class="activity-meta" style="margin-bottom: 0.5rem;">
+                                <span class="meta-tag">${activity.independent ? "🧒 Independent" : "👨‍👧 Parent-assisted"}</span>
+                                <span class="meta-tag">${activity.duration === "quick" ? "⏱️ Quick" : activity.duration === "medium" ? "⏳ Medium" : "⌛ Long"}</span>
+                                <span class="meta-tag">${activity.location === "indoor" ? "🏠 Indoor" : "🌳 Outdoor"}</span>
+                                <span class="meta-tag">Age ${activity.age}</span>
                             </div>
-                            <div class="activity-text">${activity.text}</div>
-                            <button onclick="removeFavorite(${activity.id})" style="background: var(--danger); padding: 0.25rem 0.5rem; font-size: 0.8rem; color: white;">Remove</button>
+                            <div class="activity-text" style="margin-bottom: 1rem;">${activity.text}</div>
+                            <button onclick="removeFavorite(${activity.id})" style="background: var(--danger); color: white; border: none; padding: 0.5rem 1rem; border-radius: 8px; cursor: pointer; font-size: 0.9rem;">
+                                🗑️ Remove
+                            </button>
                         </div>
                     `;
-                } else {
-                    console.log('Activity not found for ID:', favId);
                 }
             });
             
-            if (foundFavorites === 0) {
-                html += "<p>No favorite activities found. The activities database might have changed.</p>";
-            }
-            
             favoritesList.innerHTML = html;
-            console.log(`Displayed ${foundFavorites} favorite activities`);
         }
         
-        // Remove from favorites
+        // Remove favorite
         function removeFavorite(activityId) {
-            console.log('Removing favorite:', activityId);
             favorites = favorites.filter(id => id !== activityId);
             saveFavorites();
             updateFavoritesList();
             
-            // Update any visible favorite button in the results
             if (currentActivity && currentActivity.id === activityId) {
                 const favBtn = document.querySelector('.favorite-btn');
                 if (favBtn) {
@@ -709,13 +762,11 @@
             }
         }
         
-        // Switch between tabs
+        // Switch tabs
         function showTab(tabName) {
-            console.log('Switching to tab:', tabName);
             document.getElementById('generator-tab').style.display = tabName === 'generator' ? 'block' : 'none';
             document.getElementById('favorites-tab').style.display = tabName === 'favorites' ? 'block' : 'none';
             
-            // Update tab buttons
             document.querySelectorAll('.tab-btn').forEach(btn => {
                 btn.classList.toggle('active', btn.textContent.toLowerCase().includes(tabName));
             });
@@ -725,51 +776,19 @@
             }
         }
         
-        // Add event listeners for auto-collapse
-        document.addEventListener('DOMContentLoaded', function() {
-            // Add change listeners to radio buttons and checkboxes
-            document.querySelectorAll('input[name="location"]').forEach(input => {
-                input.addEventListener('change', () => {
-                    generateActivity();
-                    autoCollapseSection('location-group');
-                });
-            });
-            
-            document.querySelectorAll('input[name="availability"]').forEach(input => {
-                input.addEventListener('change', () => {
-                    generateActivity();
-                    autoCollapseSection('availability-group');
-                });
-            });
-            
-            document.querySelectorAll('input[name="duration"]').forEach(input => {
-                input.addEventListener('change', () => {
-                    generateActivity();
-                    autoCollapseSection('duration-group');
-                });
-            });
-            
-            document.querySelectorAll('.materials input[type="checkbox"]').forEach(input => {
-                input.addEventListener('change', () => {
-                    generateActivity();
-                    autoCollapseSection('materials-group');
-                });
-            });
-        });
-        
-        // Initialize on load
+        // Initialize
         window.onload = async function() {
             console.log('Page loaded, initializing...');
+            
+            // Load favorites first
+            loadFavorites();
+            
+            // Load initial activities for the default age group
             const initialAge = document.getElementById("age").value;
             await loadActivities(initialAge);
-            updateFilterChips();
+            
+            console.log('Initialization complete');
         };
-        
-        // Debug function to check current state
-        function debugState() {
-            console.log('Current state:');
-            console.log('Activities loaded:', activitiesLoaded);
-            console.log('Current activities:', activities);
-            console.log('All cached activities:', allActivities);
-            console.log('Current favorites:', favorites);
-            console.log('Current activity:', currentActivity);
+    </script>
+</body>
+</html>
