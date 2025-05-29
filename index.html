@@ -168,7 +168,7 @@
     <div id="generator-tab">
         <div class="form-group">
             <label for="age">Child's Age:</label>
-            <select id="age" onchange="generateActivity()">
+            <select id="age" onchange="handleAgeChange()">
                 <option value="0-2">0-2 years</option>
                 <option value="3-5">3-5 years</option>
                 <option value="6-8">6-8 years</option>
@@ -250,40 +250,55 @@
     
     <script>
         // Global variables
-        let activities = [];
+        let activities = []; // Will hold current age group activities
+        let allActivities = {}; // Cache for all loaded age groups
         let favorites = [];
         let currentActivity = null;
         let activitiesLoaded = false;
         
-        // Load activities from JSON file
-        async function loadActivities() {
+        // Handle age change - load new activities if needed
+        async function handleAgeChange() {
+            const ageGroup = document.getElementById("age").value;
+            await loadActivities(ageGroup);
+            generateActivity();
+        }
+        
+        // Load activities for specific age group
+        async function loadActivities(ageGroup) {
+            // Check if we already have this age group in cache
+            if (allActivities[ageGroup]) {
+                activities = allActivities[ageGroup];
+                activitiesLoaded = true;
+                return;
+            }
+            
             try {
-                console.log('Loading activities...');
-                const response = await fetch('./activities.json?t=' + Date.now());
+                const resultDiv = document.getElementById("result");
+                resultDiv.innerHTML = `<div class="loading">Loading activities for ${ageGroup}...</div>`;
+                resultDiv.style.display = "block";
+                
+                console.log(`Loading activities for age group: ${ageGroup}`);
+                const response = await fetch(`./activities-${ageGroup}.json?t=${Date.now()}`);
+                
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
                 }
+                
                 const data = await response.json();
                 activities = data.activities || [];
+                allActivities[ageGroup] = activities; // Cache it
                 activitiesLoaded = true;
-                console.log(`Loaded ${activities.length} activities`);
                 
-                // Load favorites after activities are loaded
+                console.log(`Loaded ${activities.length} activities for ${ageGroup}`);
                 loadFavorites();
                 
-                // Generate initial activity
-                generateActivity();
-                
-                // Update favorites list if we're on that tab
-                updateFavoritesList();
-                
             } catch (error) {
-                console.error("Error loading activities:", error);
-                const resultDiv = document.getElementById('result');
+                console.error(`Error loading activities for ${ageGroup}:`, error);
+                const resultDiv = document.getElementById("result");
                 resultDiv.innerHTML = `
                     <div class="error">
                         Error loading activities: ${error.message}<br>
-                        Please make sure activities.json is in the same directory as this HTML file.
+                        Please make sure activities-${ageGroup}.json exists.
                     </div>
                 `;
                 resultDiv.style.display = "block";
@@ -434,7 +449,16 @@
             let foundFavorites = 0;
             
             favorites.forEach(favId => {
-                const activity = activities.find(a => a.id === favId);
+                // Search all cached age groups for the activity
+                let activity = null;
+                for (const ageGroup in allActivities) {
+                    const found = allActivities[ageGroup].find(a => a.id === favId);
+                    if (found) {
+                        activity = found;
+                        break;
+                    }
+                }
+                
                 if (activity) {
                     foundFavorites++;
                     console.log('Found favorite activity:', activity);
@@ -497,16 +521,18 @@
         }
         
         // Initialize on load
-        window.onload = function() {
+        window.onload = async function() {
             console.log('Page loaded, initializing...');
-            loadActivities();
+            const initialAge = document.getElementById("age").value;
+            await loadActivities(initialAge);
         };
         
         // Debug function to check current state
         function debugState() {
             console.log('Current state:');
             console.log('Activities loaded:', activitiesLoaded);
-            console.log('Total activities:', activities.length);
+            console.log('Current activities:', activities);
+            console.log('All cached activities:', allActivities);
             console.log('Current favorites:', favorites);
             console.log('Current activity:', currentActivity);
         }
