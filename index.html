@@ -13,6 +13,7 @@
             --success: #28a745;
             --warning: #ffc107;
             --danger: #dc3545;
+            --border: #e0e0e0;
         }
         * {
             box-sizing: border-box;
@@ -34,17 +35,94 @@
             margin-bottom: 1.5rem;
             padding-top: 1rem;
         }
-        .form-group {
-            margin-bottom: 1.25rem;
+
+        /* Filter chips for selected options */
+        .filter-chips {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+            padding: 0.75rem;
             background: white;
-            padding: 1.25rem;
             border-radius: 10px;
             box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            min-height: 60px;
+            align-items: center;
         }
+        .chip {
+            background: var(--primary);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+        .chip-materials {
+            background: var(--success);
+        }
+        .filter-chips:empty::before {
+            content: "Make your selections below to see filters here";
+            color: #666;
+            font-style: italic;
+        }
+
+        /* Collapsible form groups */
+        .form-group {
+            margin-bottom: 0.75rem;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        .form-group.collapsed {
+            margin-bottom: 0.5rem;
+        }
+        .form-header {
+            padding: 1rem 1.25rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: white;
+            border-bottom: 1px solid var(--border);
+            transition: background-color 0.2s;
+        }
+        .form-header:hover {
+            background: #f8f9fa;
+        }
+        .form-group.collapsed .form-header {
+            border-bottom: none;
+            padding-bottom: 1rem;
+        }
+        .form-content {
+            padding: 0 1.25rem 1.25rem 1.25rem;
+            transition: all 0.3s ease;
+        }
+        .form-group.collapsed .form-content {
+            max-height: 0;
+            padding: 0 1.25rem;
+            overflow: hidden;
+        }
+        .collapse-icon {
+            transition: transform 0.3s ease;
+            font-size: 1.2rem;
+            color: var(--primary);
+        }
+        .form-group.collapsed .collapse-icon {
+            transform: rotate(-90deg);
+        }
+
         label {
             display: block;
             margin-bottom: 0.5rem;
             font-weight: 600;
+        }
+        .form-header label {
+            margin-bottom: 0;
+            flex-grow: 1;
         }
         select, .materials, .duration-options {
             width: 100%;
@@ -57,6 +135,8 @@
         .materials, .duration-options {
             columns: 2;
             column-gap: 1rem;
+            padding: 0;
+            border: none;
         }
         @media (max-width: 480px) {
             .materials, .duration-options {
@@ -84,6 +164,15 @@
         }
         button:hover {
             background-color: var(--secondary);
+        }
+        .expand-all-btn {
+            background-color: #6c757d;
+            margin-bottom: 1rem;
+            padding: 0.5rem;
+            font-size: 0.9rem;
+        }
+        .expand-all-btn:hover {
+            background-color: #5a6268;
         }
         #result {
             margin-top: 1.25rem;
@@ -155,6 +244,11 @@
             text-align: center;
             padding: 1rem;
         }
+        
+        /* Smooth scroll behavior */
+        html {
+            scroll-behavior: smooth;
+        }
     </style>
 </head>
 <body>
@@ -166,72 +260,103 @@
     </div>
     
     <div id="generator-tab">
-        <div class="form-group">
-            <label for="age">Child's Age:</label>
-            <select id="age" onchange="handleAgeChange()">
-                <option value="0-2">0-2 years</option>
-                <option value="3-5">3-5 years</option>
-                <option value="6-8">6-8 years</option>
-                <option value="9-12">9-12 years</option>
-                <option value="12+">12+ years</option>
-            </select>
-        </div>
+        <!-- Filter chips showing current selections -->
+        <div class="filter-chips" id="filter-chips"></div>
         
-        <div class="form-group">
-            <label>Location:</label>
-            <div class="radio-item">
-                <input type="radio" id="indoor" name="location" value="indoor" checked onchange="generateActivity()">
-                <label for="indoor">🏠 Indoor</label>
-            </div>
-            <div class="radio-item">
-                <input type="radio" id="outdoor" name="location" value="outdoor" onchange="generateActivity()">
-                <label for="outdoor">🌳 Outdoor</label>
-            </div>
-        </div>
+        <!-- Expand/Collapse all button -->
+        <button class="expand-all-btn" onclick="toggleAllSections()">📝 Expand All Sections</button>
         
-        <div class="form-group">
-            <label>Parent Availability:</label>
-            <div class="radio-item">
-                <input type="radio" id="available" name="availability" value="available" checked onchange="generateActivity()">
-                <label for="available">👨‍👧 I can play too</label>
+        <div class="form-group" id="age-group">
+            <div class="form-header" onclick="toggleSection('age-group')">
+                <label for="age">Child's Age:</label>
+                <span class="collapse-icon">▼</span>
             </div>
-            <div class="radio-item">
-                <input type="radio" id="independent" name="availability" value="independent" onchange="generateActivity()">
-                <label for="independent">🧒 Need independent activity</label>
+            <div class="form-content">
+                <select id="age" onchange="handleAgeChange()">
+                    <option value="0-2">0-2 years</option>
+                    <option value="3-5">3-5 years</option>
+                    <option value="6-8">6-8 years</option>
+                    <option value="9-12">9-12 years</option>
+                    <option value="12+">12+ years</option>
+                </select>
             </div>
         </div>
         
-        <div class="form-group">
-            <label>Duration:</label>
-            <div class="duration-options">
+        <div class="form-group" id="location-group">
+            <div class="form-header" onclick="toggleSection('location-group')">
+                <label>Location:</label>
+                <span class="collapse-icon">▼</span>
+            </div>
+            <div class="form-content">
                 <div class="radio-item">
-                    <input type="radio" id="quick" name="duration" value="quick" checked onchange="generateActivity()">
-                    <label for="quick">⏱️ Quick (&lt;15 min)</label>
+                    <input type="radio" id="indoor" name="location" value="indoor" checked onchange="generateActivity()">
+                    <label for="indoor">🏠 Indoor</label>
                 </div>
                 <div class="radio-item">
-                    <input type="radio" id="medium" name="duration" value="medium" onchange="generateActivity()">
-                    <label for="medium">⏳ Medium (15-30 min)</label>
-                </div>
-                <div class="radio-item">
-                    <input type="radio" id="long" name="duration" value="long" onchange="generateActivity()">
-                    <label for="long">⌛ Long (30+ min)</label>
+                    <input type="radio" id="outdoor" name="location" value="outdoor" onchange="generateActivity()">
+                    <label for="outdoor">🌳 Outdoor</label>
                 </div>
             </div>
         </div>
         
-        <div class="form-group">
-            <label>Available Materials:</label>
-            <div class="materials">
-                <div class="checkbox-item"><input type="checkbox" id="paper" value="paper" onchange="generateActivity()"><label for="paper">📄 Paper</label></div>
-                <div class="checkbox-item"><input type="checkbox" id="pencils" value="pencils" onchange="generateActivity()"><label for="pencils">✏️ Pencils/Markers</label></div>
-                <div class="checkbox-item"><input type="checkbox" id="scissors" value="scissors" onchange="generateActivity()"><label for="scissors">✂️ Scissors</label></div>
-                <div class="checkbox-item"><input type="checkbox" id="tape" value="tape" onchange="generateActivity()"><label for="tape">📏 Tape/Glue</label></div>
-                <div class="checkbox-item"><input type="checkbox" id="ball" value="ball" onchange="generateActivity()"><label for="ball">🏀 Ball</label></div>
-                <div class="checkbox-item"><input type="checkbox" id="blocks" value="blocks" onchange="generateActivity()"><label for="blocks">🧱 Blocks/Lego</label></div>
-                <div class="checkbox-item"><input type="checkbox" id="dolls" value="dolls" onchange="generateActivity()"><label for="dolls">🧸 Dolls/Stuffed Animals</label></div>
-                <div class="checkbox-item"><input type="checkbox" id="cards" value="cards" onchange="generateActivity()"><label for="cards">🃏 Playing Cards</label></div>
-                <div class="checkbox-item"><input type="checkbox" id="blanket" value="blanket" onchange="generateActivity()"><label for="blanket">🛏️ Blanket</label></div>
-                <div class="checkbox-item"><input type="checkbox" id="none" value="none" onchange="generateActivity()"><label for="none">❌ Nothing special</label></div>
+        <div class="form-group" id="availability-group">
+            <div class="form-header" onclick="toggleSection('availability-group')">
+                <label>Parent Availability:</label>
+                <span class="collapse-icon">▼</span>
+            </div>
+            <div class="form-content">
+                <div class="radio-item">
+                    <input type="radio" id="available" name="availability" value="available" checked onchange="generateActivity()">
+                    <label for="available">👨‍👧 I can play too</label>
+                </div>
+                <div class="radio-item">
+                    <input type="radio" id="independent" name="availability" value="independent" onchange="generateActivity()">
+                    <label for="independent">🧒 Need independent activity</label>
+                </div>
+            </div>
+        </div>
+        
+        <div class="form-group" id="duration-group">
+            <div class="form-header" onclick="toggleSection('duration-group')">
+                <label>Duration:</label>
+                <span class="collapse-icon">▼</span>
+            </div>
+            <div class="form-content">
+                <div class="duration-options">
+                    <div class="radio-item">
+                        <input type="radio" id="quick" name="duration" value="quick" checked onchange="generateActivity()">
+                        <label for="quick">⏱️ Quick (&lt;15 min)</label>
+                    </div>
+                    <div class="radio-item">
+                        <input type="radio" id="medium" name="duration" value="medium" onchange="generateActivity()">
+                        <label for="medium">⏳ Medium (15-30 min)</label>
+                    </div>
+                    <div class="radio-item">
+                        <input type="radio" id="long" name="duration" value="long" onchange="generateActivity()">
+                        <label for="long">⌛ Long (30+ min)</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="form-group" id="materials-group">
+            <div class="form-header" onclick="toggleSection('materials-group')">
+                <label>Available Materials:</label>
+                <span class="collapse-icon">▼</span>
+            </div>
+            <div class="form-content">
+                <div class="materials">
+                    <div class="checkbox-item"><input type="checkbox" id="paper" value="paper" onchange="generateActivity()"><label for="paper">📄 Paper</label></div>
+                    <div class="checkbox-item"><input type="checkbox" id="pencils" value="pencils" onchange="generateActivity()"><label for="pencils">✏️ Pencils/Markers</label></div>
+                    <div class="checkbox-item"><input type="checkbox" id="scissors" value="scissors" onchange="generateActivity()"><label for="scissors">✂️ Scissors</label></div>
+                    <div class="checkbox-item"><input type="checkbox" id="tape" value="tape" onchange="generateActivity()"><label for="tape">📏 Tape/Glue</label></div>
+                    <div class="checkbox-item"><input type="checkbox" id="ball" value="ball" onchange="generateActivity()"><label for="ball">🏀 Ball</label></div>
+                    <div class="checkbox-item"><input type="checkbox" id="blocks" value="blocks" onchange="generateActivity()"><label for="blocks">🧱 Blocks/Lego</label></div>
+                    <div class="checkbox-item"><input type="checkbox" id="dolls" value="dolls" onchange="generateActivity()"><label for="dolls">🧸 Dolls/Stuffed Animals</label></div>
+                    <div class="checkbox-item"><input type="checkbox" id="cards" value="cards" onchange="generateActivity()"><label for="cards">🃏 Playing Cards</label></div>
+                    <div class="checkbox-item"><input type="checkbox" id="blanket" value="blanket" onchange="generateActivity()"><label for="blanket">🛏️ Blanket</label></div>
+                    <div class="checkbox-item"><input type="checkbox" id="none" value="none" onchange="generateActivity()"><label for="none">❌ Nothing special</label></div>
+                </div>
             </div>
         </div>
         
@@ -255,12 +380,84 @@
         let favorites = [];
         let currentActivity = null;
         let activitiesLoaded = false;
+        let allSectionsExpanded = true;
+        
+        // Toggle individual section
+        function toggleSection(sectionId) {
+            const section = document.getElementById(sectionId);
+            section.classList.toggle('collapsed');
+            updateFilterChips();
+        }
+        
+        // Toggle all sections
+        function toggleAllSections() {
+            const sections = document.querySelectorAll('.form-group');
+            const btn = document.querySelector('.expand-all-btn');
+            
+            if (allSectionsExpanded) {
+                // Collapse all
+                sections.forEach(section => section.classList.add('collapsed'));
+                btn.textContent = '📋 Expand All Sections';
+                allSectionsExpanded = false;
+            } else {
+                // Expand all
+                sections.forEach(section => section.classList.remove('collapsed'));
+                btn.textContent = '📝 Collapse All Sections';
+                allSectionsExpanded = true;
+            }
+        }
+        
+        // Update filter chips display
+        function updateFilterChips() {
+            const chipsContainer = document.getElementById('filter-chips');
+            const chips = [];
+            
+            // Age chip
+            const age = document.getElementById("age").value;
+            chips.push(`<span class="chip">👶 Age ${age}</span>`);
+            
+            // Location chip
+            const location = document.querySelector('input[name="location"]:checked').value;
+            chips.push(`<span class="chip">${location === 'indoor' ? '🏠' : '🌳'} ${location}</span>`);
+            
+            // Availability chip
+            const availability = document.querySelector('input[name="availability"]:checked').value;
+            chips.push(`<span class="chip">${availability === 'available' ? '👨‍👧' : '🧒'} ${availability === 'available' ? 'Parent joins' : 'Independent'}</span>`);
+            
+            // Duration chip
+            const duration = document.querySelector('input[name="duration"]:checked').value;
+            const durationEmoji = duration === 'quick' ? '⏱️' : duration === 'medium' ? '⏳' : '⌛';
+            chips.push(`<span class="chip">${durationEmoji} ${duration}</span>`);
+            
+            // Materials chips
+            const materialCheckboxes = document.querySelectorAll('.materials input[type="checkbox"]:checked');
+            const materials = Array.from(materialCheckboxes).map(cb => cb.value);
+            if (materials.length > 0) {
+                const materialsText = materials.length > 3 ? `${materials.length} materials` : materials.join(', ');
+                chips.push(`<span class="chip chip-materials">🎨 ${materialsText}</span>`);
+            }
+            
+            chipsContainer.innerHTML = chips.join('');
+        }
+        
+        // Auto-collapse sections after selection (except age)
+        function autoCollapseSection(sectionId) {
+            if (sectionId !== 'age-group') {
+                setTimeout(() => {
+                    const section = document.getElementById(sectionId);
+                    if (section && !section.classList.contains('collapsed')) {
+                        section.classList.add('collapsed');
+                    }
+                }, 1000); // Delay to let user see their selection
+            }
+        }
         
         // Handle age change - load new activities if needed
         async function handleAgeChange() {
             const ageGroup = document.getElementById("age").value;
             await loadActivities(ageGroup);
             generateActivity();
+            updateFilterChips();
         }
         
         // Load activities for specific age group
@@ -330,6 +527,8 @@
         
         // Generate activity based on filters
         function generateActivity() {
+            updateFilterChips();
+            
             if (!activitiesLoaded || activities.length === 0) {
                 return;
             }
@@ -395,6 +594,12 @@
                         ${isFavorite ? '★ Saved to Favorites' : '☆ Save to Favorites'}
                     </button>
                 `;
+                
+                // Auto-scroll to result
+                setTimeout(() => {
+                    resultDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }, 100);
+                
             } else {
                 resultDiv.innerHTML = `
                     <p>No exact matches found. Try:</p>
@@ -520,11 +725,44 @@
             }
         }
         
+        // Add event listeners for auto-collapse
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add change listeners to radio buttons and checkboxes
+            document.querySelectorAll('input[name="location"]').forEach(input => {
+                input.addEventListener('change', () => {
+                    generateActivity();
+                    autoCollapseSection('location-group');
+                });
+            });
+            
+            document.querySelectorAll('input[name="availability"]').forEach(input => {
+                input.addEventListener('change', () => {
+                    generateActivity();
+                    autoCollapseSection('availability-group');
+                });
+            });
+            
+            document.querySelectorAll('input[name="duration"]').forEach(input => {
+                input.addEventListener('change', () => {
+                    generateActivity();
+                    autoCollapseSection('duration-group');
+                });
+            });
+            
+            document.querySelectorAll('.materials input[type="checkbox"]').forEach(input => {
+                input.addEventListener('change', () => {
+                    generateActivity();
+                    autoCollapseSection('materials-group');
+                });
+            });
+        });
+        
         // Initialize on load
         window.onload = async function() {
             console.log('Page loaded, initializing...');
             const initialAge = document.getElementById("age").value;
             await loadActivities(initialAge);
+            updateFilterChips();
         };
         
         // Debug function to check current state
@@ -535,10 +773,3 @@
             console.log('All cached activities:', allActivities);
             console.log('Current favorites:', favorites);
             console.log('Current activity:', currentActivity);
-        }
-        
-        // Make debug function available globally
-        window.debugState = debugState;
-    </script>
-</body>
-</html>
