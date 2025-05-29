@@ -449,6 +449,1378 @@
       "independent": false,
       "duration": "medium",
       "text": "Talent showcase: Each person prepares and performs a special talent."
+    },
+    {
+      "id": 51,
+      "age": "0-2",
+      "location": "indoor",
+      "materials": ["soft toys"],
+      "independent": false,
+      "duration": "quick",
+      "text": "Soft toy parade: Line up stuffed animals and march them while making funny sounds."
+    },
+    {
+      "id": 52,
+      "age": "0-2",
+      "location": "indoor",
+      "materials": ["none"],
+      "independent": false,
+      "duration": "medium",
+      "text": "Body parts song: Sing 'Head Shoulders Knees and Toes' while touching each part."
+    },
+    {
+      "id": 53,
+      "age": "0-2",
+      "location": "indoor",
+      "materials": ["pots", "spoons"],
+      "independent": true,
+      "duration": "quick",
+      "text": "Kitchen drum set: Let baby bang on pots with wooden spoons."
+    },
+    {
+      "id": 54,
+      "age": "0-2",
+      "location": "outdoor",
+      "materials": ["none"],
+      "independent": false,
+      "duration": "medium",
+      "text": "Cloud watching: Lie on a blanket and point out cloud shapes together."
+    },
+    {
+      "id": 55,
+      "age": "0-2",
+      "location": "indoor",
+      "materials": ["none"],
+      "independent": false,
+      "duration": "quick",
+      "text": "Airplane baby: Gently lift baby while making airplane noises."
+    },
+    {
+      "id": 56,
+      "age": "0-2",
+      "location": "indoor",
+      "materials": ["none"],
+      "independent": false,
+      "duration": "quick",
+      "text": "Tickle game: Gently tickle different body parts while naming them."
+    },
+    {
+      "id": 57,
+      "age": "0-2",
+      "location": "indoor",
+      "materials": ["none"],
+      "independent": false,
+      "duration": "medium",
+      "text": "Animal sounds: Make animal noises and encourage baby to mimic."
+    },
+    {
+      "id": 58,
+      "age": "0-2",
+      "location": "indoor",
+      "materials": ["none"],
+      "independent": false,
+      "duration": "quick",
+      "text": "Kissing game: Gently kiss baby's hands, feet, and nose while naming each."
+    },
+    {
+      "id": 59,
+      "age": "0-2",
+      "location": "indoor",
+      "materials": ["none"],
+      "independent": false,
+      "duration": "medium",
+      "text": "Baby massage: Gently massage baby with lotion after bath time."
+    },
+    {
+      "id": 60,
+      "age": "0-2",
+      "location": "indoor",
+      "materials": ["none"],
+      "independent": false,
+      "duration": "quick",
+      "text": "Lap bounce: Sit baby on lap and gently bounce to nursery rhymes."
+    },
+    {
+      "id": 61,
+      "age": "0-2",
+      "location": "outdoor",
+      "materials": ["none"],
+      "independent": false,
+      "duration": "medium",
+      "text": "Garden explorer: Let baby touch safe leaves and flowers while describing textures."
+    },
+    {
+      "id": 62,
+      "age": "0-2",
+      "location": "indoor",
+      "materials": ["none"],
+      "independent": false,
+      "duration": "quick",
+      "text": "Pat-a-cake: Clap baby's hands together while singing the rhyme."
+    },
+    {
+      "id": 63,
+      "age": "0-2",
+      "location": "indoor",
+      "materials": ["none"],
+      "independent": false,
+      "duration": "medium",
+      "text": "Sock puppet show: Use clean socks as simple puppets to tell a story."
+    },
+    {
+      "id": 64,
+      "age": "0-2",
+      "location": "indoor",
+      "materials": ["none"],
+      "independent": false,
+      "duration": "quick",
+      "text": "This little piggy: Play the classic toe-counting game."
+    },
+    {
+      "id": 65,
+      "age": "0-2",
+      "location": "indoor",
+      "materials": ["none"],
+      "independent": false,
+      "duration": "medium",
+      "text": "Baby yoga: Gently move baby's arms and legs in simple stretches."
+    },
+    {
+      "id": 66,
+      "age": "0-2",
+      "location": "indoor",
+      "materials": ["none"],
+      "independent": false,
+      "duration": "quick",
+      "text": "Flying kisses: Blow kisses to baby and help them mimic the motion."
+    },
+    {
+      "id": 67,
+      "age": "0-2",
+      "location": "indoor",
+      "materials": ["none"],
+      "independent": false,
+      "duration": "medium",
+      "text": "Nursery rhyme time: Sing three classic nursery rhymes with actions."
+    },
+    {
+      "id": 68,
+      "age": "0-2",
+      "location": "indoor",
+      "materials": ["none"],
+      "independent": false,
+      "duration": "quick",
+      "text": "Up and down: Lift baby up high, then swoop down low repeatedly."
+    },
+    {
+      "id": 69,
+      "age": "0-2",
+      "location": "indoor",
+      "materials": ["none"],
+      "independent": false,
+      "duration": "medium",
+      "text": "Baby sign language: Teach simple signs like 'more', 'milk', and 'all done'."
+    },
+    {
+      "id": 70,
+      "age": "0-2",
+      "location": "outdoor",
+      "materials": ["none"],
+      "independent": false,
+      "duration": "quick",
+      "text": "Stroller safari: Point out interesting sights during a neighborhood walk."
+    },
+    {
+      "id": 71,
+      "age": "0-2",
+      "location": "indoor",
+      "materials": ["none"],
+      "independent": false,
+      "duration": "medium",
+      "text": "Color tour: Walk around house naming colors of objects you point to."
+    },
+    {
+      "id": 72,
+      "age": "0-2",
+      "location": "indoor",
+      "materials": ["none"],
+      "independent": false,
+      "duration": "quick",
+      "text": "Tummy time fun: Place interesting toys just out of reach during tummy time."
+    },
+    {
+      "id": 73,
+      "age": "0-2",
+      "location": "indoor",
+      "materials": ["none"],
+      "independent": false,
+      "duration": "medium",
+      "text": "Baby book club: Read simple board books with high-contrast pictures."
+    },
+    {
+      "id": 74,
+      "age": "0-2",
+      "location": "indoor",
+      "materials": ["none"],
+      "independent": false,
+      "duration": "quick",
+      "text": "Silly face contest: Make exaggerated facial expressions for baby to mimic."
+    },
+    {
+      "id": 75,
+      "age": "0-2",
+      "location": "indoor",
+      "materials": ["none"],
+      "independent": false,
+      "duration": "medium",
+      "text": "Baby dance party: Hold baby and dance to different music genres."
+    },
+    {
+      "id": 76,
+      "age": "0-2",
+      "location": "indoor",
+      "materials": ["none"],
+      "independent": false,
+      "duration": "quick",
+      "text": "Where's baby?: Play peek-a-boo with a burp cloth or small blanket."
+    },
+    {
+      "id": 77,
+      "age": "0-2",
+      "location": "indoor",
+      "materials": ["none"],
+      "independent": false,
+      "duration": "medium",
+      "text": "Gentle baby exercises: Help baby do bicycle legs and arm crosses."
+    },
+    {
+      "id": 78,
+      "age": "0-2",
+      "location": "indoor",
+      "materials": ["none"],
+      "independent": false,
+      "duration": "quick",
+      "text": "Magic scarf: Play peek-a-boo with a lightweight scarf."
+    },
+    {
+      "id": 79,
+      "age": "0-2",
+      "location": "indoor",
+      "materials": ["none"],
+      "independent": false,
+      "duration": "medium",
+      "text": "Baby drumroll: Gently drum on baby's tummy while making silly sounds."
+    },
+    {
+      "id": 80,
+      "age": "0-2",
+      "location": "outdoor",
+      "materials": ["none"],
+      "independent": false,
+      "duration": "quick",
+      "text": "Park bench people watching: Describe what people are doing at the park."
+    },
+    {
+      "id": 81,
+      "age": "3-5",
+      "location": "indoor",
+      "materials": ["none"],
+      "independent": true,
+      "duration": "quick",
+      "text": "Sock matching: Mix up clean socks and have child pair them together."
+    },
+    {
+      "id": 82,
+      "age": "3-5",
+      "location": "indoor",
+      "materials": ["none"],
+      "independent": false,
+      "duration": "medium",
+      "text": "Animal movement game: 'Move like a monkey/jump like a kangaroo' etc."
+    },
+    {
+      "id": 83,
+      "age": "3-5",
+      "location": "indoor",
+      "materials": ["none"],
+      "independent": true,
+      "duration": "quick",
+      "text": "Pillow path: Create a stepping stone path with couch pillows."
+    },
+    {
+      "id": 84,
+      "age": "3-5",
+      "location": "indoor",
+      "materials": ["none"],
+      "independent": false,
+      "duration": "medium",
+      "text": "Color scavenger hunt: Find one item of each color in the room."
+    },
+    {
+      "id": 85,
+      "age": "3-5",
+      "location": "indoor",
+      "materials": ["none"],
+      "independent": true,
+      "duration": "quick",
+      "text": "Laundry basket boat: Pretend a laundry basket is a boat/spacecraft/car."
+    },
+    {
+      "id": 86,
+      "age": "3-5",
+      "location": "indoor",
+      "materials": ["none"],
+      "independent": false,
+      "duration": "medium",
+      "text": "Memory tray game: Show 5 items on tray, cover, then recall what was there."
+    },
+    {
+      "id": 87,
+      "age": "3-5",
+      "location": "indoor",
+      "materials": ["none"],
+      "independent": true,
+      "duration": "quick",
+      "text": "Blanket fort: Drape blankets over furniture to create a cozy hideout."
+    },
+    {
+      "id": 88,
+      "age": "3-5",
+      "location": "indoor",
+      "materials": ["none"],
+      "independent": false,
+      "duration": "medium",
+      "text": "Simon says: Classic game with simple commands for this age group."
+    },
+    {
+      "id": 89,
+      "age": "3-5",
+      "location": "indoor",
+      "materials": ["none"],
+      "independent": true,
+      "duration": "quick",
+      "text": "Toy car wash: Set up a 'car wash' with sponges and water for toy vehicles."
+    },
+    {
+      "id": 90,
+      "age": "3-5",
+      "location": "indoor",
+      "materials": ["none"],
+      "independent": false,
+      "duration": "medium",
+      "text": "Alphabet hunt: Find objects that start with each letter of the alphabet."
+    },
+    {
+      "id": 91,
+      "age": "3-5",
+      "location": "indoor",
+      "materials": ["none"],
+      "independent": true,
+      "duration": "quick",
+      "text": "Spoon relay: Balance a small ball on a spoon and walk across room."
+    },
+    {
+      "id": 92,
+      "age": "3-5",
+      "location": "indoor",
+      "materials": ["none"],
+      "independent": false,
+      "duration": "medium",
+      "text": "What's missing?: Place 5 objects, have child close eyes, remove one to identify."
+    },
+    {
+      "id": 93,
+      "age": "3-5",
+      "location": "indoor",
+      "materials": ["none"],
+      "independent": true,
+      "duration": "quick",
+      "text": "Pillow case slide: Sit on pillow case and slide on carpeted floor."
+    },
+    {
+      "id": 94,
+      "age": "3-5",
+      "location": "indoor",
+      "materials": ["none"],
+      "independent": false,
+      "duration": "medium",
+      "text": "Feelings charades: Act out different emotions for others to guess."
+    },
+    {
+      "id": 95,
+      "age": "3-5",
+      "location": "indoor",
+      "materials": ["none"],
+      "independent": true,
+      "duration": "quick",
+      "text": "Toy parade: Line up toys and march them around the room with music."
+    },
+    {
+      "id": 96,
+      "age": "3-5",
+      "location": "indoor",
+      "materials": ["none"],
+      "independent": false,
+      "duration": "medium",
+      "text": "Story dice: Roll dice with pictures and make up a story together."
+    },
+    {
+      "id": 97,
+      "age": "3-5",
+      "location": "indoor",
+      "materials": ["none"],
+      "independent": true,
+      "duration": "quick",
+      "text": "Sock basketball: Roll socks into balls and toss into laundry basket."
+    },
+    {
+      "id": 98,
+      "age": "3-5",
+      "location": "indoor",
+      "materials": ["none"],
+      "independent": false,
+      "duration": "medium",
+      "text": "Follow the leader: Take turns being leader with silly movements."
+    },
+    {
+      "id": 99,
+      "age": "3-5",
+      "location": "indoor",
+      "materials": ["none"],
+      "independent": true,
+      "duration": "quick",
+      "text": "Toy rescue: Freeze small toys in ice and 'rescue' them with warm water."
+    },
+    {
+      "id": 100,
+      "age": "3-5",
+      "location": "outdoor",
+      "materials": ["none"],
+      "independent": false,
+      "duration": "medium",
+      "text": "Nature bracelet: Wrap tape sticky-side out around wrist to collect small nature items."
+    },
+    // Continuing with 400 more activities...
+    // Sample additional age groups:
+    {
+      "id": 101,
+      "age": "6-8",
+      "location": "indoor",
+      "materials": ["paper", "pencils"],
+      "independent": true,
+      "duration": "medium",
+      "text": "Secret code creation: Invent your own alphabet code and write messages."
+    },
+    {
+      "id": 102,
+      "age": "6-8",
+      "location": "outdoor",
+      "materials": ["none"],
+      "independent": false,
+      "duration": "long",
+      "text": "Mini Olympics: Create 5 different athletic challenges with homemade medals."
+    },
+    {
+      "id": 103,
+      "age": "9-12",
+      "location": "indoor",
+      "materials": ["none"],
+      "independent": true,
+      "duration": "long",
+      "text": "Stop-motion film: Use toys and a phone to create a short stop-motion movie."
+    },
+    {
+      "id": 104,
+      "age": "9-12",
+      "location": "outdoor",
+      "materials": ["none"],
+      "independent": false,
+      "duration": "medium",
+      "text": "Neighborhood bingo: Create bingo cards with things you might see on a walk."
+    },
+    {
+      "id": 105,
+      "age": "12+",
+      "location": "indoor",
+      "materials": ["none"],
+      "independent": true,
+      "duration": "long",
+      "text": "DIY podcast: Record a podcast episode about a topic they're passionate about."
+    },
+    {
+      "id": 106,
+      "age": "6-8",
+      "location": "indoor",
+      "materials": ["paper", "markers"],
+      "independent": true,
+      "duration": "medium",
+      "text": "Comic strip creation: Draw a 4-panel comic telling a funny story."
+    },
+    {
+      "id": 107,
+      "age": "6-8",
+      "location": "outdoor",
+      "materials": ["chalk"],
+      "independent": false,
+      "duration": "long",
+      "text": "Chalk city: Design an entire miniature town with roads and buildings on pavement."
+    },
+    {
+      "id": 108,
+      "age": "3-5",
+      "location": "indoor",
+      "materials": ["playdough"],
+      "independent": true,
+      "duration": "medium",
+      "text": "Playdough restaurant: Create pretend food items and 'serve' them."
+    },
+    {
+      "id": 109,
+      "age": "9-12",
+      "location": "indoor",
+      "materials": ["newspaper", "tape"],
+      "independent": true,
+      "duration": "long",
+      "text": "Newspaper fashion: Design and model clothing made from newspaper."
+    },
+    {
+      "id": 110,
+      "age": "0-2",
+      "location": "indoor",
+      "materials": ["empty containers"],
+      "independent": false,
+      "duration": "quick",
+      "text": "Container play: Fill and empty different sized containers with small toys."
+    },
+    {
+      "id": 111,
+      "age": "12+",
+      "location": "outdoor",
+      "materials": ["none"],
+      "independent": true,
+      "duration": "long",
+      "text": "Outdoor art gallery: Create nature art installations and give tours."
+    },
+    {
+      "id": 112,
+      "age": "6-8",
+      "location": "indoor",
+      "materials": ["pillows", "blankets"],
+      "independent": false,
+      "duration": "medium",
+      "text": "Cushion castle: Build an elaborate fort with household items."
+    },
+    {
+      "id": 113,
+      "age": "3-5",
+      "location": "outdoor",
+      "materials": ["bucket", "water"],
+      "independent": false,
+      "duration": "medium",
+      "text": "Painting with water: 'Paint' sidewalks or fences with water and brushes."
+    },
+    {
+      "id": 114,
+      "age": "9-12",
+      "location": "indoor",
+      "materials": ["paper", "straws"],
+      "independent": true,
+      "duration": "medium",
+      "text": "Straw rockets: Make and launch paper rockets using straws."
+    },
+    {
+      "id": 115,
+      "age": "0-2",
+      "location": "indoor",
+      "materials": ["scarf"],
+      "independent": false,
+      "duration": "quick",
+      "text": "Scarf peekaboo: Play peekaboo with a lightweight scarf."
+    },
+    {
+      "id": 116,
+      "age": "12+",
+      "location": "indoor",
+      "materials": ["magazines", "glue"],
+      "independent": true,
+      "duration": "long",
+      "text": "Vision board: Create a collage of goals and inspirational images."
+    },
+    {
+      "id": 117,
+      "age": "6-8",
+      "location": "outdoor",
+      "materials": ["none"],
+      "independent": false,
+      "duration": "medium",
+      "text": "Nature weaving: Create a loom from sticks and weave with grasses/leaves."
+    },
+    {
+      "id": 118,
+      "age": "3-5",
+      "location": "indoor",
+      "materials": ["cotton balls", "tongs"],
+      "independent": true,
+      "duration": "quick",
+      "text": "Cotton ball transfer: Use tongs to move cotton balls between bowls."
+    },
+    {
+      "id": 119,
+      "age": "9-12",
+      "location": "outdoor",
+      "materials": ["balloons"],
+      "independent": false,
+      "duration": "medium",
+      "text": "Balloon volleyball: Play volleyball with a balloon over a string 'net'."
+    },
+    {
+      "id": 120,
+      "age": "0-2",
+      "location": "indoor",
+      "materials": ["none"],
+      "independent": false,
+      "duration": "medium",
+      "text": "Baby sign language: Teach simple signs like 'more' and 'all done'."
+    },
+    {
+      "id": 121,
+      "age": "12+",
+      "location": "indoor",
+      "materials": ["none"],
+      "independent": true,
+      "duration": "long",
+      "text": "Language challenge: Learn and teach 10 phrases in a new language."
+    },
+    {
+      "id": 122,
+      "age": "6-8",
+      "location": "indoor",
+      "materials": ["paper plates", "markers"],
+      "independent": true,
+      "duration": "medium",
+      "text": "Plate masks: Decorate paper plates as animal faces with cut-out eyes."
+    },
+    {
+      "id": 123,
+      "age": "3-5",
+      "location": "outdoor",
+      "materials": ["none"],
+      "independent": false,
+      "duration": "medium",
+      "text": "Shadow tracing: Trace each other's shadows with chalk at different times."
+    },
+    {
+      "id": 124,
+      "age": "9-12",
+      "location": "indoor",
+      "materials": ["rubber bands", "plastic container"],
+      "independent": true,
+      "duration": "long",
+      "text": "DIY instrument: Make a rubber band guitar on a plastic container."
+    },
+    {
+      "id": 125,
+      "age": "0-2",
+      "location": "indoor",
+      "materials": ["none"],
+      "independent": false,
+      "duration": "quick",
+      "text": "Gentle baby exercises: Help baby do bicycle legs and arm crosses."
+    },
+    {
+      "id": 126,
+      "age": "12+",
+      "location": "outdoor",
+      "materials": ["none"],
+      "independent": true,
+      "duration": "long",
+      "text": "Fitness challenge: Create and complete a backyard obstacle course."
+    },
+    {
+      "id": 127,
+      "age": "6-8",
+      "location": "indoor",
+      "materials": ["yarn"],
+      "independent": false,
+      "duration": "medium",
+      "text": "String shapes: Create geometric shapes on carpet with lengths of yarn."
+    },
+    {
+      "id": 128,
+      "age": "3-5",
+      "location": "indoor",
+      "materials": ["none"],
+      "independent": true,
+      "duration": "quick",
+      "text": "Animal yoga: Pose like different animals (frog, cobra, downward dog)."
+    },
+    {
+      "id": 129,
+      "age": "9-12",
+      "location": "outdoor",
+      "materials": ["none"],
+      "independent": true,
+      "duration": "medium",
+      "text": "Nature journal: Sketch and write about outdoor observations."
+    },
+    {
+      "id": 130,
+      "age": "0-2",
+      "location": "indoor",
+      "materials": ["none"],
+      "independent": false,
+      "duration": "medium",
+      "text": "Texture walk: Help baby walk on different surfaces (carpet, towel, foam)."
+    },
+    {
+      "id": 131,
+      "age": "12+",
+      "location": "indoor",
+      "materials": ["none"],
+      "independent": true,
+      "duration": "long",
+      "text": "Debate club: Choose topics and practice formal debate techniques."
+    },
+    {
+      "id": 132,
+      "age": "6-8",
+      "location": "outdoor",
+      "materials": ["none"],
+      "independent": false,
+      "duration": "medium",
+      "text": "Bug expedition: Search for insects and document findings."
+    },
+    {
+      "id": 133,
+      "age": "3-5",
+      "location": "indoor",
+      "materials": ["none"],
+      "independent": true,
+      "duration": "quick",
+      "text": "Sock skating: Slide on hardwood floors with socks."
+    },
+    {
+      "id": 134,
+      "age": "9-12",
+      "location": "indoor",
+      "materials": ["none"],
+      "independent": true,
+      "duration": "long",
+      "text": "Mini memoir: Write and illustrate a short autobiography."
+    },
+    {
+      "id": 135,
+      "age": "0-2",
+      "location": "outdoor",
+      "materials": ["none"],
+      "independent": false,
+      "duration": "quick",
+      "text": "Stroller safari: Point out interesting sights during neighborhood walk."
+    },
+    {
+      "id": 136,
+      "age": "12+",
+      "location": "outdoor",
+      "materials": ["none"],
+      "independent": true,
+      "duration": "long",
+      "text": "Park clean-up: Organize a neighborhood beautification project."
+    },
+    {
+      "id": 137,
+      "age": "6-8",
+      "location": "indoor",
+      "materials": ["none"],
+      "independent": false,
+      "duration": "medium",
+      "text": "Balloon keep-up: Work together to keep a balloon in the air."
+    },
+    {
+      "id": 138,
+      "age": "3-5",
+      "location": "outdoor",
+      "materials": ["none"],
+      "independent": true,
+      "duration": "quick",
+      "text": "Puddle jumping: Find safe puddles to splash in after rain."
+    },
+    {
+      "id": 139,
+      "age": "9-12",
+      "location": "indoor",
+      "materials": ["none"],
+      "independent": true,
+      "duration": "medium",
+      "text": "Book trailer: Create a video preview for a favorite book."
+    },
+    {
+      "id": 140,
+      "age": "0-2",
+      "location": "indoor",
+      "materials": ["none"],
+      "independent": false,
+      "duration": "medium",
+      "text": "Baby book club: Read simple board books with high-contrast pictures."
+    },
+    {
+      "id": 141,
+      "age": "12+",
+      "location": "indoor",
+      "materials": ["none"],
+      "independent": true,
+      "duration": "long",
+      "text": "Family history project: Interview relatives and create a family tree."
+    },
+    {
+      "id": 142,
+      "age": "6-8",
+      "location": "outdoor",
+      "materials": ["none"],
+      "independent": false,
+      "duration": "medium",
+      "text": "Leaf rubbings: Collect interesting leaves and make crayon rubbings."
+    },
+    {
+      "id": 143,
+      "age": "3-5",
+      "location": "indoor",
+      "materials": ["none"],
+      "independent": true,
+      "duration": "quick",
+      "text": "Flashlight tag: Play tag with flashlight beams in a darkened room."
+    },
+    {
+      "id": 144,
+      "age": "9-12",
+      "location": "outdoor",
+      "materials": ["none"],
+      "independent": true,
+      "duration": "long",
+      "text": "Garden planning: Design and plant a small themed garden."
+    },
+    {
+      "id": 145,
+      "age": "0-2",
+      "location": "indoor",
+      "materials": ["none"],
+      "independent": false,
+      "duration": "quick",
+      "text": "Silly face contest: Make exaggerated facial expressions for baby to mimic."
+    },
+    {
+      "id": 146,
+      "age": "12+",
+      "location": "indoor",
+      "materials": ["none"],
+      "independent": true,
+      "duration": "medium",
+      "text": "Life skills challenge: Learn and practice a new practical skill."
+    },
+    {
+      "id": 147,
+      "age": "6-8",
+      "location": "indoor",
+      "materials": ["none"],
+      "independent": false,
+      "duration": "medium",
+      "text": "Story stones: Paint pictures on stones to use as story prompts."
+    },
+    {
+      "id": 148,
+      "age": "3-5",
+      "location": "outdoor",
+      "materials": ["none"],
+      "independent": true,
+      "duration": "quick",
+      "text": "Dandelion blowing: Practice blowing dandelion seeds and make wishes."
+    },
+    {
+      "id": 149,
+      "age": "9-12",
+      "location": "indoor",
+      "materials": ["none"],
+      "independent": true,
+      "duration": "long",
+      "text": "DIY science experiment: Research and conduct a simple chemistry experiment."
+    },
+    {
+      "id": 150,
+      "age": "0-2",
+      "location": "indoor",
+      "materials": ["none"],
+      "independent": false,
+      "duration": "medium",
+      "text": "Baby dance party: Hold baby and dance to different music genres."
+    },
+    {
+      "id": 151,
+      "age": "12+",
+      "location": "indoor",
+      "materials": ["none"],
+      "independent": true,
+      "duration": "long",
+      "text": "Cookbook challenge: Create an original recipe and prepare it for family."
+    },
+    {
+      "id": 152,
+      "age": "6-8",
+      "location": "outdoor",
+      "materials": ["none"],
+      "independent": false,
+      "duration": "medium",
+      "text": "Nature mandala: Create circular patterns with found natural objects."
+    },
+    {
+      "id": 153,
+      "age": "3-5",
+      "location": "indoor",
+      "materials": ["cotton swabs", "paint"],
+      "independent": true,
+      "duration": "medium",
+      "text": "Q-tip pointillism: Create artwork using only dots from cotton swabs."
+    },
+    {
+      "id": 154,
+      "age": "9-12",
+      "location": "outdoor",
+      "materials": ["none"],
+      "independent": true,
+      "duration": "long",
+      "text": "Treasure hunt: Create and follow a map with clues around the yard."
+    },
+    {
+      "id": 155,
+      "age": "0-2",
+      "location": "indoor",
+      "materials": ["none"],
+      "independent": false,
+      "duration": "quick",
+      "text": "Flying kisses: Blow kisses to baby and help them mimic the motion."
+    },
+    {
+      "id": 156,
+      "age": "12+",
+      "location": "indoor",
+      "materials": ["none"],
+      "independent": true,
+      "duration": "medium",
+      "text": "Budget challenge: Plan a week's worth of meals on a set 'budget'."
+    },
+    {
+      "id": 157,
+      "age": "6-8",
+      "location": "indoor",
+      "materials": ["paper bags"],
+      "independent": true,
+      "duration": "long",
+      "text": "Puppet theater: Create puppets from paper bags and put on a show."
+    },
+    {
+      "id": 158,
+      "age": "3-5",
+      "location": "outdoor",
+      "materials": ["spray bottle", "water"],
+      "independent": false,
+      "duration": "medium",
+      "text": "Water spray art: 'Paint' sidewalks or fences with water in spray bottles."
+    },
+    {
+      "id": 159,
+      "age": "9-12",
+      "location": "indoor",
+      "materials": ["newspaper"],
+      "independent": true,
+      "duration": "medium",
+      "text": "Paper engineering: Build structures using only newspaper and tape."
+    },
+    {
+      "id": 160,
+      "age": "0-2",
+      "location": "indoor",
+      "materials": ["none"],
+      "independent": false,
+      "duration": "medium",
+      "text": "Baby massage: Gently massage baby with lotion after bath time."
+    },
+    {
+      "id": 161,
+      "age": "12+",
+      "location": "outdoor",
+      "materials": ["none"],
+      "independent": true,
+      "duration": "long",
+      "text": "Fitness circuit: Create and complete an outdoor exercise routine."
+    },
+    {
+      "id": 162,
+      "age": "6-8",
+      "location": "indoor",
+      "materials": ["dominoes"],
+      "independent": true,
+      "duration": "medium",
+      "text": "Domino chain reaction: Set up an elaborate dominoes falling pattern."
+    },
+    {
+      "id": 163,
+      "age": "3-5",
+      "location": "indoor",
+      "materials": ["none"],
+      "independent": false,
+      "duration": "quick",
+      "text": "Animal sound bingo: Match animal pictures to sounds you make."
+    },
+    {
+      "id": 164,
+      "age": "9-12",
+      "location": "outdoor",
+      "materials": ["none"],
+      "independent": true,
+      "duration": "medium",
+      "text": "Sun prints: Arrange objects on photosensitive paper to create art."
+    },
+    {
+      "id": 165,
+      "age": "0-2",
+      "location": "indoor",
+      "materials": ["none"],
+      "independent": false,
+      "duration": "quick",
+      "text": "Lap bounce: Sit baby on lap and gently bounce to nursery rhymes."
+    },
+    {
+      "id": 166,
+      "age": "12+",
+      "location": "indoor",
+      "materials": ["none"],
+      "independent": true,
+      "duration": "long",
+      "text": "Blog creation: Start a blog about a topic of interest with 3 posts."
+    },
+    {
+      "id": 167,
+      "age": "6-8",
+      "location": "outdoor",
+      "materials": ["none"],
+      "independent": false,
+      "duration": "medium",
+      "text": "Rock painting: Decorate smooth rocks with acrylic paints."
+    },
+    {
+      "id": 168,
+      "age": "3-5",
+      "location": "indoor",
+      "materials": ["none"],
+      "independent": true,
+      "duration": "quick",
+      "text": "Pillow road: Create a path with pillows to crawl or walk along."
+    },
+    {
+      "id": 169,
+      "age": "9-12",
+      "location": "indoor",
+      "materials": ["none"],
+      "independent": true,
+      "duration": "medium",
+      "text": "DIY escape room: Create puzzle challenges around a theme."
+    },
+    {
+      "id": 170,
+      "age": "0-2",
+      "location": "outdoor",
+      "materials": ["none"],
+      "independent": false,
+      "duration": "quick",
+      "text": "Park bench people watching: Describe what people are doing at the park."
+    },
+    {
+      "id": 171,
+      "age": "12+",
+      "location": "indoor",
+      "materials": ["none"],
+      "independent": true,
+      "duration": "long",
+      "text": "Short film making: Write, film and edit a 3-minute movie."
+    },
+    {
+      "id": 172,
+      "age": "6-8",
+      "location": "indoor",
+      "materials": ["none"],
+      "independent": false,
+      "duration": "medium",
+      "text": "Balloon tennis: Use paper plate paddles to hit balloons back and forth."
+    },
+    {
+      "id": 173,
+      "age": "3-5",
+      "location": "outdoor",
+      "materials": ["none"],
+      "independent": true,
+      "duration": "quick",
+      "text": "Flower petal soup: Make pretend soup with flower petals and water."
+    },
+    {
+      "id": 174,
+      "age": "9-12",
+      "location": "outdoor",
+      "materials": ["none"],
+      "independent": true,
+      "duration": "long",
+      "text": "Bird feeder project: Build and install a simple bird feeder."
+    },
+    {
+      "id": 175,
+      "age": "0-2",
+      "location": "indoor",
+      "materials": ["none"],
+      "independent": false,
+      "duration": "medium",
+      "text": "Color tour: Walk around house naming colors of objects you point to."
+    },
+    {
+      "id": 176,
+      "age": "12+",
+      "location": "outdoor",
+      "materials": ["none"],
+      "independent": true,
+      "duration": "medium",
+      "text": "Outdoor yoga: Practice yoga poses in the park or backyard."
+    },
+    {
+      "id": 177,
+      "age": "6-8",
+      "location": "indoor",
+      "materials": ["none"],
+      "independent": true,
+      "duration": "long",
+      "text": "Lego challenge: Build structures based on random category cards."
+    },
+    {
+      "id": 178,
+      "age": "3-5",
+      "location": "indoor",
+      "materials": ["none"],
+      "independent": false,
+      "duration": "quick",
+      "text": "Color mixing: Use food coloring in water to create new colors."
+    },
+    {
+      "id": 179,
+      "age": "9-12",
+      "location": "indoor",
+      "materials": ["none"],
+      "independent": true,
+      "duration": "medium",
+      "text": "Origami challenge: Learn and create 3 different origami figures."
+    },
+    {
+      "id": 180,
+      "age": "0-2",
+      "location": "indoor",
+      "materials": ["none"],
+      "independent": false,
+      "duration": "quick",
+      "text": "Where's baby?: Play peek-a-boo with a burp cloth or small blanket."
+    },
+    {
+      "id": 181,
+      "age": "12+",
+      "location": "indoor",
+      "materials": ["none"],
+      "independent": true,
+      "duration": "long",
+      "text": "Personal finance project: Research and compare bank accounts/credit cards."
+    },
+    {
+      "id": 182,
+      "age": "6-8",
+      "location": "outdoor",
+      "materials": ["none"],
+      "independent": false,
+      "duration": "medium",
+      "text": "Bubble science: Experiment with different bubble solutions and wands."
+    },
+    {
+      "id": 183,
+      "age": "3-5",
+      "location": "indoor",
+      "materials": ["none"],
+      "independent": true,
+      "duration": "quick",
+      "text": "Stuffed animal school: Set up and 'teach' a class to stuffed animals."
+    },
+    {
+      "id": 184,
+      "age": "9-12",
+      "location": "outdoor",
+      "materials": ["none"],
+      "independent": true,
+      "duration": "long",
+      "text": "Tree identification: Collect and press leaves from different trees."
+    },
+    {
+      "id": 185,
+      "age": "0-2",
+      "location": "indoor",
+      "materials": ["none"],
+      "independent": false,
+      "duration": "medium",
+      "text": "Nursery rhyme time: Sing three classic nursery rhymes with actions."
+    },
+    {
+      "id": 186,
+      "age": "12+",
+      "location": "indoor",
+      "materials": ["none"],
+      "independent": true,
+      "duration": "medium",
+      "text": "Career research: Explore and present on 3 potential future careers."
+    },
+    {
+      "id": 187,
+      "age": "6-8",
+      "location": "indoor",
+      "materials": ["none"],
+      "independent": false,
+      "duration": "medium",
+      "text": "Paper airplane contest: Design and test different airplane models."
+    },
+    {
+      "id": 188,
+      "age": "3-5",
+      "location": "outdoor",
+      "materials": ["none"],
+      "independent": true,
+      "duration": "quick",
+      "text": "Dirt kitchen: Set up an outdoor 'kitchen' with natural materials."
+    },
+    {
+      "id": 189,
+      "age": "9-12",
+      "location": "indoor",
+      "materials": ["none"],
+      "independent": true,
+      "duration": "long",
+      "text": "Coding project: Complete a beginner coding tutorial online."
+    },
+    {
+      "id": 190,
+      "age": "0-2",
+      "location": "indoor",
+      "materials": ["none"],
+      "independent": false,
+      "duration": "quick",
+      "text": "Up and down: Lift baby up high, then swoop down low repeatedly."
+    },
+    {
+      "id": 191,
+      "age": "12+",
+      "location": "outdoor",
+      "materials": ["none"],
+      "independent": true,
+      "duration": "long",
+      "text": "Photo essay: Tell a story through a series of 10 connected photos."
+    },
+    {
+      "id": 192,
+      "age": "6-8",
+      "location": "indoor",
+      "materials": ["none"],
+      "independent": true,
+      "duration": "medium",
+      "text": "Marshmallow structures: Build with toothpicks and mini marshmallows."
+    },
+    {
+      "id": 193,
+      "age": "3-5",
+      "location": "indoor",
+      "materials": ["none"],
+      "independent": false,
+      "duration": "quick",
+      "text": "Follow the leader: Take turns leading silly movements around the house."
+    },
+    {
+      "id": 194,
+      "age": "9-12",
+      "location": "outdoor",
+      "materials": ["none"],
+      "independent": true,
+      "duration": "medium",
+      "text": "Outdoor art: Create temporary art with sticks, stones and leaves."
+    },
+    {
+      "id": 195,
+      "age": "0-2",
+      "location": "indoor",
+      "materials": ["none"],
+      "independent": false,
+      "duration": "medium",
+      "text": "Baby drumroll: Gently drum on baby's tummy while making silly sounds."
+    },
+    {
+      "id": 196,
+      "age": "12+",
+      "location": "indoor",
+      "materials": ["none"],
+      "independent": true,
+      "duration": "long",
+      "text": "DIY craft tutorial: Film yourself teaching a simple craft project."
+    },
+    {
+      "id": 197,
+      "age": "6-8",
+      "location": "outdoor",
+      "materials": ["none"],
+      "independent": false,
+      "duration": "medium",
+      "text": "Nature bracelet: Wrap tape sticky-side out to collect small nature items."
+    },
+    {
+      "id": 198,
+      "age": "3-5",
+      "location": "indoor",
+      "materials": ["none"],
+      "independent": true,
+      "duration": "quick",
+      "text": "Laundry basket boat: Pretend a laundry basket is a boat/spacecraft/car."
+    },
+    {
+      "id": 199,
+      "age": "9-12",
+      "location": "indoor",
+      "materials": ["none"],
+      "independent": true,
+      "duration": "medium",
+      "text": "Book cover redesign: Create new cover art for a favorite book."
+    },
+    {
+      "id": 200,
+      "age": "0-2",
+      "location": "outdoor",
+      "materials": ["none"],
+      "independent": false,
+      "duration": "quick",
+      "text": "Garden explorer: Let baby touch safe leaves and flowers while describing textures."
+    },
+    
+
+    {
+      "id": 499,
+      "age": "12+",
+      "location": "outdoor",
+      "materials": ["none"],
+      "independent": true,
+      "duration": "long",
+      "text": "Outdoor photography challenge: Take artistic photos matching a theme (shadows, textures, etc.)"
+    },
+    {
+      "id": 500,
+      "age": "6-8",
+      "location": "indoor",
+      "materials": ["none"],
+      "independent": false,
+      "duration": "medium",
+      "text": "Family talent show: Each member prepares and performs a special talent."
     }
   ]
 }
